@@ -133,6 +133,7 @@ a{ color: inherit; text-decoration-thickness: .08em; }
 /* ===== Hero ===== */
 .hero{
   padding: clamp(2rem, 6vw, 4rem) 0;
+  margin-block-end: clamp(1.25rem, 3.5vw, 2.5rem); /* space after hero */
 }
 
 .hero--img{
@@ -140,21 +141,16 @@ a{ color: inherit; text-decoration-thickness: .08em; }
   border-radius: var(--radius-2xl);
   overflow: hidden;
   background: #0b1f18;
+  background-image: url("../img/hero-image.jpg"); /* ensure hero image shows */
+  background-size: cover;
+  background-position: center;
   min-height: 36vh;
   display: grid;
   place-items: center;
 }
 
-/* background image */
-.hero--img::before{
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("../img/hero-image.jpg");
-  background-size: cover;
-  background-position: center;
-  filter: brightness(0.55);
-}
+/* remove duplicate background layer (we use .hero::before for gradient) */
+.hero--img::before{ content: none; }
 
 .hero-inner{
   position: relative;
@@ -618,8 +614,7 @@ a{ color: inherit; text-decoration-thickness: .08em; }
 }
 
 /* Hero */
-.theme-dark .hero--img{ background: #07100c; } /* keeps a very dark base */
-.theme-dark .hero--img::before{ filter: brightness(0.45); } /* darker overlay for legibility */
+.theme-dark .hero--img{ background-color: #07100c; } /* keeps a very dark base under photo */
 
 /* Buttons */
 .theme-dark .btn-outline{
@@ -1253,3 +1248,8 @@ a, .chip.is-active{ accent-color: var(--accent); }
 }
 /* Ensure hero content sits above overlay */
 .hero > *{ position: relative; z-index: 2; }
+
+.form-status { margin-top: 8px; font-size: 0.95rem; }
+.form-status.ok { color: #0a7c2f; }   /* green-ish */
+.form-status.err { color: #b00020; }  /* red-ish */
+

@@ -196,7 +196,7 @@ a{ color: inherit; text-decoration-thickness: .08em; }
 .btn-primary:hover{ opacity: 0.9; }
 
 /* ===== Sections ===== */
-.section { padding: clamp(2rem, 5vw, 4rem) 0; }
+.section { padding: clamp(2rem, 5vw, 4rem) 0; margin-block-end: clamp(1.25rem, 3.5vw, 2.5rem); }
 .section h2 { margin-bottom: 0.5rem; }
 
 /* Alternate section surface with subtle depth */

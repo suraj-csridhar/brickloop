@@ -192,11 +192,13 @@ Please share curated options.`;
     try {
       // Try POST first
       let ok = false;
+      let postError = '';
       try {
         const res = await sendPost(fd);
         const data = await res.json().catch(() => ({}));
         ok = res.ok && data && data.ok === true;
-      } catch { /* fall through to GET */ }
+        if (!ok && data && data.error) postError = String(data.error);
+      } catch (e) { postError = String(e && e.message || ''); /* fall through to GET */ }
 
       // If POST failed or not ok, try GET fallback
       if (!ok) {
@@ -204,14 +206,15 @@ Please share curated options.`;
           const resGet = await sendGet(fd);
           const dataGet = await resGet.json().catch(() => ({}));
           ok = resGet.ok && dataGet && dataGet.ok === true;
-        } catch { /* no-op */ }
+          if (!ok && dataGet && dataGet.error) postError = postError || String(dataGet.error);
+        } catch (e) { if (!postError) postError = String(e && e.message || ''); }
       }
 
       if (ok) {
         status.textContent = 'Sent! We’ll get back shortly.';
         form.reset();
       } else {
-        status.textContent = 'Could not send. Please check the endpoint deployment and permissions.';
+        status.textContent = 'Could not send. ' + (postError ? String(postError) : 'Please check the endpoint deployment and permissions.');
       }
     } catch {
       status.textContent = 'Network error. Please check your connection.';

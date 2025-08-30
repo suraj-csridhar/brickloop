@@ -534,10 +534,12 @@ a{ color: inherit; text-decoration-thickness: .08em; }
 .logo-card:hover{ transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,0,0,.06); }
 
 .logo-card img{
-  height: 64px;               /* larger, more legible logo size */
-  max-width: 240px;           /* allow wider logos without clipping */
-  object-fit: contain;
-  filter: none;               /* keep brand colors for sharpness/clarity */
+  width: 100%;                /* responsive within the card */
+  max-width: 220px;           /* cap on desktop */
+  aspect-ratio: 16 / 9;       /* uniform logo box ratio */
+  height: auto;               /* computed from aspect-ratio */
+  object-fit: contain;        /* preserve original logo proportions */
+  filter: none;               /* keep brand colors for clarity */
   image-rendering: -webkit-optimize-contrast;
   transition: transform .2s ease;
 }

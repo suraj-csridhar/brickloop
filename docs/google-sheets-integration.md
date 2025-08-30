@@ -21,47 +21,38 @@ const SHEET_ID   = '1TOpZLa9A2y5-c3Gwlt9J-g3YcAmn6Yv1ZW5BNwL-fNg';
 const SHEET_NAME = 'Sheet1'; // change if your tab has a different name
 const SECRET_KEY = 'brickloop-lite'; // must match frontend
 
-function doPost(e) {
-  try {
-    const params = e.parameter || {};
-    if (params.key !== SECRET_KEY) return respond({ ok: false, error: 'unauthorized' });
+function handle(e){
+  const params = (e && e.parameter) || {};
+  if (params.key !== SECRET_KEY) return json({ ok:false, error:'unauthorized' });
 
-    // Map incoming fields to your schema
-    const name   = (params.name   || '').trim();
-    const phone  = (params.phone  || '').trim();
-    const area   = (params.area   || '').trim();       // Preferred Area
-    const budget = (params.budget || '').trim();       // Budget Range
-    const need   = (params.need   || '').trim();       // Looking For
+  const name   = (params.name   || '').trim();
+  const phone  = (params.phone  || '').trim();
+  const area   = (params.area   || '').trim();
+  const budget = (params.budget || '').trim();
+  const need   = (params.need   || '').trim();
 
-    if (!name || !phone) return respond({ ok: false, error: 'missing_fields' });
+  if (!name || !phone) return json({ ok:false, error:'missing_fields' });
 
-    const ss = SpreadsheetApp.openById(SHEET_ID);
-    const sh = ss.getSheetByName(SHEET_NAME) || ss.getActiveSheet();
-    sh.appendRow([
-      new Date(),  // Timestamp
-      name,
-      phone,
-      area,
-      budget,
-      need
-    ]);
+  const ss = SpreadsheetApp.openById(SHEET_ID);
+  const sh = ss.getSheetByName(SHEET_NAME) || ss.getActiveSheet();
+  sh.appendRow([ new Date(), name, phone, area, budget, need ]);
 
-    return respond({ ok: true });
-  } catch (err) {
-    return respond({ ok: false, error: String(err) });
-  }
+  return json({ ok:true });
 }
 
-function respond(obj) {
-  const out = ContentService.createTextOutput(JSON.stringify(obj));
-  out.setMimeType(ContentService.MimeType.JSON);
-  out.setHeader('Access-Control-Allow-Origin', '*');
-  out.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  out.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  return out;
+function doPost(e){
+  try { return handle(e); } catch (err) { return json({ ok:false, error:String(err) }); }
 }
 
-function doOptions(e) { return respond({ ok: true }); }
+// GET fallback so frontend can retry via GET if POST fails
+function doGet(e){
+  try { return handle(e); } catch (err) { return json({ ok:false, error:String(err) }); }
+}
+
+function json(obj){
+  return ContentService.createTextOutput(JSON.stringify(obj))
+    .setMimeType(ContentService.MimeType.JSON);
+}
 ```
 
 Frontend configuration
@@ -70,7 +61,13 @@ Frontend configuration
   - `SECRET_KEY` to the same value used in the Apps Script
 
 Notes
-- CORS: The script sets permissive CORS headers for simple POSTs.
+- CORS: Using `application/x-www-form-urlencoded` avoids preflight; Apps Script Web App works across origins.
 - Validation: The frontend uses HTML5 validation; Apps Script also checks for required fields.
 - Privacy: Data is written only to your sheet; no third-party services are used.
 
+Troubleshooting
+- Use the Web App URL ending in `/exec`, not `/dev`.
+- Deployment must be “Execute as: Me” and “Who has access: Anyone with the link”. Re-deploy after script changes.
+- Confirm the sheet tab name matches `SHEET_NAME`.
+- Check Apps Script “Executions” for errors when you submit.
+- If POST is blocked by a network policy, the frontend auto-retries via GET.

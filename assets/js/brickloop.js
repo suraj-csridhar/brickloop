@@ -134,11 +134,32 @@ Please share curated options.`;
   if (!form || !status) return;
 
   // Your Web App URL (must end with /exec)
-  const ENDPOINT_URL = 'https://script.google.com/macros/s/XXXXXXXXXXXX/exec';
+  const ENDPOINT_URL = 'https://script.google.com/macros/s/AKfycbx0jY-Fp0zIOwZUT-2Ks9t2GU1vPYQ5sXO7rokJHamCTKM6EO7CGLqcDmZxsEbXasQn/exec';
   // Must match SECRET_KEY in your Apps Script
   const SECRET_KEY = 'brickloop-lite';
 
   let busy = false;
+
+  const isEndpointConfigured = () => {
+    if (!ENDPOINT_URL) return false;
+    if (!/https:\/\/script\.google\.com\/macros\/s\//.test(ENDPOINT_URL)) return false;
+    if (!/\/exec$/.test(ENDPOINT_URL)) return false;
+    return true;
+  };
+
+  async function sendPost(fd) {
+    return fetch(ENDPOINT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+      body: new URLSearchParams(fd).toString()
+    });
+  }
+
+  async function sendGet(fd) {
+    const qs = new URLSearchParams(fd).toString();
+    const url = ENDPOINT_URL + (ENDPOINT_URL.includes('?') ? '&' : '?') + qs;
+    return fetch(url, { method: 'GET' });
+  }
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -146,6 +167,11 @@ Please share curated options.`;
 
     // HTML5 validation first
     if (!form.reportValidity()) return;
+
+    if (!isEndpointConfigured()){
+      status.textContent = 'Submission not configured. Check the Apps Script /exec URL.';
+      return;
+    }
 
     // Honeypot: if bots fill this hidden field, ignore
     if (form.company && form.company.value.trim()) {
@@ -164,21 +190,31 @@ Please share curated options.`;
     fd.append('key', SECRET_KEY);
 
     try {
-      const res = await fetch(ENDPOINT_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-        body: new URLSearchParams(fd).toString()
-      });
+      // Try POST first
+      let ok = false;
+      try {
+        const res = await sendPost(fd);
+        const data = await res.json().catch(() => ({}));
+        ok = res.ok && data && data.ok === true;
+      } catch { /* fall through to GET */ }
 
-      const data = await res.json().catch(() => ({}));
-      if (res.ok && data.ok) {
+      // If POST failed or not ok, try GET fallback
+      if (!ok) {
+        try {
+          const resGet = await sendGet(fd);
+          const dataGet = await resGet.json().catch(() => ({}));
+          ok = resGet.ok && dataGet && dataGet.ok === true;
+        } catch { /* no-op */ }
+      }
+
+      if (ok) {
         status.textContent = 'Sent! We’ll get back shortly.';
         form.reset();
       } else {
-        status.textContent = 'Could not send. Please try again.';
+        status.textContent = 'Could not send. Please check the endpoint deployment and permissions.';
       }
     } catch {
-      status.textContent = 'Network error. Please try again.';
+      status.textContent = 'Network error. Please check your connection.';
     } finally {
       if (btn) btn.textContent = oldBtnText || 'Submit';
       busy = false;
@@ -221,4 +257,3 @@ Please share curated options.`;
     }
   }, { passive: false });
 })();
-

@@ -534,16 +534,17 @@ a{ color: inherit; text-decoration-thickness: .08em; }
 .logo-card:hover{ transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,0,0,.06); }
 
 .logo-card img{
-  height: 40px;               /* uniform logo height */
-  max-width: 180px;           /* avoid overflow */
+  height: 64px;               /* larger, more legible logo size */
+  max-width: 240px;           /* allow wider logos without clipping */
   object-fit: contain;
-  filter: grayscale(100%) opacity(.9);
-  transition: filter .2s ease;
+  filter: none;               /* keep brand colors for sharpness/clarity */
+  image-rendering: -webkit-optimize-contrast;
+  transition: transform .2s ease;
 }
-.logo-card:hover img{ filter: none; }
+.logo-card:hover img{ transform: translateY(-1px); }
 
 .logo-card span{
-  font-size: .9rem;
+  font-size: 1rem;            /* slightly larger caption for readability */
   opacity: .9;
   text-align: center;
 }
@@ -624,7 +625,7 @@ a{ color: inherit; text-decoration-thickness: .08em; }
 
 /* Featured Builders logos look nicer on dark */
 .theme-dark .logo-card img{
-  filter: grayscale(100%) opacity(.95) brightness(1.05);
+  filter: none; /* preserve logo clarity on dark theme too */
 }
 
 /* ====== NAV REFINEMENT (keep your existing HTML) ====== */

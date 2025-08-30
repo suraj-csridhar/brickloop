@@ -18,9 +18,15 @@
   --radius-xl: 1rem;
   --radius-2xl: 1.25rem;
 
-  /* Neutral palette (HSL triplets for hsl(var(--...))) */
+  /* Neutral palette (HSL triplets for legacy uses) */
   --border: 0 0% 86%;
   --muted:  0 0% 96%;
+
+  /* Modern surface tokens (light defaults) */
+  --bg:   #f7f9fc;
+  --card: #ffffff;
+  --text: #0b1220;
+  --line: rgba(10,20,30,0.08);
 }
 
 /* Reset & base */
@@ -34,8 +40,8 @@ body{
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
   line-height: 1.5;
-  color: #111;
-  background: #fafafa;
+  color: var(--text);
+  background: var(--bg);
 }
 
 img{ max-width: 100%; height: auto; display: block; }
@@ -159,14 +165,16 @@ a{ color: inherit; text-decoration-thickness: .08em; }
 }
 
 .hero-title{
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 700;
-  margin-bottom: 0.5rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+  letter-spacing: .02em;
 }
 
 .hero-sub{
-  opacity: 0.8;
+  opacity: 0.92;
   max-width: 48rem;
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
 }
 
 /* ===== Buttons ===== */
@@ -188,8 +196,16 @@ a{ color: inherit; text-decoration-thickness: .08em; }
 .btn-primary:hover{ opacity: 0.9; }
 
 /* ===== Sections ===== */
-.section { padding: 2rem 0; }
+.section { padding: clamp(2rem, 5vw, 4rem) 0; }
 .section h2 { margin-bottom: 0.5rem; }
+
+/* Alternate section surface with subtle depth */
+.section--alt{
+  background: color-mix(in oklab, var(--card) 92%, var(--bg));
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: clamp(1.25rem, 3.5vw, 2rem);
+}
 
 /* ===== Cards & Layout ===== */
 .section--cards h2 { margin-bottom: 1rem; }
@@ -569,11 +585,17 @@ a{ color: inherit; text-decoration-thickness: .08em; }
   /* darker neutrals for existing hsl(var(--...)) uses */
   --border: 0 0% 22%;
   --muted:  0 0% 12%;
+
+  /* surface tokens for dark */
+  --bg:   #0b0f17;           /* deep navy-charcoal */
+  --card: #0e141b;           /* slightly raised card */
+  --text: #e6edf3;           /* high-contrast off-white */
+  --line: rgba(255,255,255,0.10);
 }
 
 .theme-dark body{
-  background: #0b0f0e;       /* near-black with green tint */
-  color: #e6ede9;            /* soft off-white */
+  background: var(--bg);
+  color: var(--text);
 }
 
 /* Header / nav */

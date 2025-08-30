@@ -180,7 +180,7 @@ Please share curated options.`;
     } catch {
       status.textContent = 'Network error. Please try again.';
     } finally {
-      if (btn) btn.textContent = oldBtnText || 'Send via WhatsApp';
+      if (btn) btn.textContent = oldBtnText || 'Submit';
       busy = false;
     }
   });
@@ -221,5 +221,4 @@ Please share curated options.`;
     }
   }, { passive: false });
 })();
-
 

@@ -383,6 +383,8 @@
 						<p>Tell us the basics—we’ll share curated options fast.</p>
 					</header>
 					<form id="enquiryForm" class="enquiry-form" novalidate>
+						<!-- Honeypot anti-bot field (kept hidden) -->
+						<input type="text" name="company" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;width:1px;height:1px;" />
 						<input type="text" name="company" autocomplete="off" tabindex="-1" style="display:none" />
 						<input type="hidden" name="source" value="website" />
 						<div class="field">
@@ -416,8 +418,7 @@
 							<input id="need" name="need" type="text" placeholder="Apartment / Villa / Plot / Micro-commercial" />
 						</div>
 						<div class="actions">
-							<button type="submit" class="btn btn-primary">Send via WhatsApp</button>
-							<a id="emailFallback" class="btn btn-outline" href="#" aria-label="Email enquiry instead">Email instead</a>
+							<button type="submit" class="btn btn-primary" id="submitEnquiry">Submit</button>
 						</div>
 						<p class="form-note">We don’t spam. Builder-neutral, zero-commission advisory.</p>
 						<p id="enquiryStatus" class="form-status" aria-live="polite"></p>

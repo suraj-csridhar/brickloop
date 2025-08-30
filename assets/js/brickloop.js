@@ -127,103 +127,156 @@ Please share curated options.`;
   });
 })();
 
-// ===== Send enquiry to Google Sheets (Apps Script) =====
-(function () {
-  const form = document.getElementById('enquiryForm');
-  const status = document.getElementById('enquiryStatus');
-  if (!form || !status) return;
-
+// ===== Lead Form Submit (Apps Script Web App) =====
+document.addEventListener('DOMContentLoaded', () => {
   // Your Web App URL (must end with /exec)
   const ENDPOINT_URL = 'https://script.google.com/macros/s/AKfycbx0jY-Fp0zIOwZUT-2Ks9t2GU1vPYQ5sXO7rokJHamCTKM6EO7CGLqcDmZxsEbXasQn/exec';
   // Must match SECRET_KEY in your Apps Script
   const SECRET_KEY = 'brickloop-lite';
 
+  // Bind explicitly to the enquiry form used on this page
+  const form = document.querySelector('#enquiryForm');
+  // Prefer a dedicated status node if present
+  const statusEl = document.querySelector('#enquiryStatus') || document.querySelector('#status');
+
+  // Guard: if no form found, stop early
+  if (!form) return console.warn('Enquiry form not found on the page.');
+
   let busy = false;
 
-  const isEndpointConfigured = () => {
-    if (!ENDPOINT_URL) return false;
-    if (!/https:\/\/script\.google\.com\/macros\/s\//.test(ENDPOINT_URL)) return false;
-    if (!/\/exec$/.test(ENDPOINT_URL)) return false;
-    return true;
-  };
+  const isEndpointConfigured = () =>
+    Boolean(
+      ENDPOINT_URL &&
+      /https:\/\/script\.google\.com\/macros\/s\//.test(ENDPOINT_URL) &&
+      /\/exec$/.test(ENDPOINT_URL)
+    );
 
-  async function sendPost(fd) {
-    return fetch(ENDPOINT_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-      body: new URLSearchParams(fd).toString()
-    });
+  // Status helper (renders message or falls back to a lightweight toast)
+  function setStatus(msg, type = 'info') {
+    if (statusEl) {
+      statusEl.textContent = msg || '';
+      statusEl.className = `form-status ${type}`;
+    } else if (msg) {
+      const t = document.createElement('div');
+      t.textContent = msg;
+      t.className = `toast ${type}`;
+      Object.assign(t.style, {
+        position: 'fixed',
+        right: '16px',
+        bottom: '16px',
+        padding: '10px 12px',
+        borderRadius: '8px',
+        background: type === 'ok' ? '#E6F4EA' : type === 'err' ? '#FDECEA' : '#EEF3FF',
+        border: `1px solid ${
+          type === 'ok' ? '#7BC37B' : type === 'err' ? '#F5C2C7' : '#A7BAF5'
+        }`,
+        zIndex: 9999,
+        fontSize: '14px'
+      });
+      document.body.appendChild(t);
+      setTimeout(() => t.remove(), 4000);
+    }
   }
 
-  async function sendGet(fd) {
-    const qs = new URLSearchParams(fd).toString();
-    const url = ENDPOINT_URL + (ENDPOINT_URL.includes('?') ? '&' : '?') + qs;
-    return fetch(url, { method: 'GET' });
+  // Abortable fetch with timeout
+  async function withTimeout(fetcher, ms = 12000) {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), ms);
+    try {
+      return await fetcher(ctrl.signal);
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+
+  // Convert FormData -> URLSearchParams (lets browser set proper Content-Type)
+  function toURLSearchParams(fd) {
+    const usp = new URLSearchParams();
+    for (const [k, v] of fd.entries()) {
+      usp.append(k, (v == null ? '' : String(v)));
+    }
+    return usp;
+  }
+
+  async function sendPost(paramsUSP) {
+    // Use no-cors to avoid CORS-induced failures that still record on the server.
+    // We treat a resolved fetch as success; only network/timeout errors show as failure.
+    return withTimeout((signal) =>
+      fetch(ENDPOINT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: paramsUSP,
+        signal
+      })
+    );
   }
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (busy) return;
 
-    // HTML5 validation first
+    // Native HTML5 validation
     if (!form.reportValidity()) return;
 
-    if (!isEndpointConfigured()){
-      status.textContent = 'Submission not configured. Check the Apps Script /exec URL.';
+    if (!isEndpointConfigured()) {
+      setStatus('Submission not configured. Check the Apps Script /exec URL.', 'err');
       return;
     }
 
-    // Honeypot: if bots fill this hidden field, ignore
-    if (form.company && form.company.value.trim()) {
-      status.textContent = 'Thanks!';
+    // Honeypot: if bots fill this hidden field, pretend success
+    const hp = form.querySelector('[name="company"]');
+    if (hp && hp.value.trim()) {
+      setStatus('Thanks!', 'ok');
+      form.reset();
       return;
     }
 
     busy = true;
-    const btn = form.querySelector('button[type="submit"]');
-    const oldBtnText = btn ? btn.textContent : '';
-    if (btn) btn.textContent = 'Sending…';
-    status.textContent = 'Sending…';
-
-    // Build URL-encoded body (avoids CORS preflight)
-    const fd = new FormData(form);
-    fd.append('key', SECRET_KEY);
+    const submitBtn = form.querySelector('button[type="submit"], [type="submit"]');
+    const originalBtnText = submitBtn ? submitBtn.textContent : '';
+    if (submitBtn) {
+      submitBtn.textContent = 'Sending…';
+      submitBtn.disabled = true;
+    }
+    setStatus('Sending…');
 
     try {
-      // Try POST first
-      let ok = false;
-      let postError = '';
-      try {
-        const res = await sendPost(fd);
-        const data = await res.json().catch(() => ({}));
-        ok = res.ok && data && data.ok === true;
-        if (!ok && data && data.error) postError = String(data.error);
-      } catch (e) { postError = String(e && e.message || ''); /* fall through to GET */ }
+      // Build payload
+      const fd = new FormData(form);
+      // Trim common fields
+      fd.set('name', (fd.get('name') || '').toString().trim());
+      fd.set('phone', (fd.get('phone') || '').toString().trim());
+      if (fd.has('area')) fd.set('area', (fd.get('area') || '').toString().trim());
+      if (fd.has('budget')) fd.set('budget', (fd.get('budget') || '').toString().trim());
+      if (fd.has('need')) fd.set('need', (fd.get('need') || '').toString().trim());
+      // Required secret
+      fd.append('key', SECRET_KEY);
 
-      // If POST failed or not ok, try GET fallback
-      if (!ok) {
-        try {
-          const resGet = await sendGet(fd);
-          const dataGet = await resGet.json().catch(() => ({}));
-          ok = resGet.ok && dataGet && dataGet.ok === true;
-          if (!ok && dataGet && dataGet.error) postError = postError || String(dataGet.error);
-        } catch (e) { if (!postError) postError = String(e && e.message || ''); }
-      }
+      const paramsUSP = toURLSearchParams(fd);
 
-      if (ok) {
-        status.textContent = 'Sent! We’ll get back shortly.';
-        form.reset();
-      } else {
-        status.textContent = 'Could not send. ' + (postError ? String(postError) : 'Please check the endpoint deployment and permissions.');
-      }
-    } catch {
-      status.textContent = 'Network error. Please check your connection.';
+      // Send once via POST (no-cors). If the fetch resolves, consider it sent.
+      await sendPost(paramsUSP);
+
+      setStatus('Sent! We’ll get back shortly.', 'ok');
+      form.reset();
+      // Optional: auto-clear the success message
+      setTimeout(() => setStatus('', 'ok'), 3500);
+    } catch (err) {
+      // Only show as error if the request could not be initiated or timed out
+      const msg = String(err?.name || '').includes('Abort')
+        ? 'Request timed out. Please try again.'
+        : 'Network error. Please check your connection.';
+      setStatus(msg, 'err');
     } finally {
-      if (btn) btn.textContent = oldBtnText || 'Submit';
+      if (submitBtn) {
+        submitBtn.textContent = originalBtnText || 'Submit';
+        submitBtn.disabled = false;
+      }
       busy = false;
     }
   });
-})();
+});
+
 
 // FAQ accordion: keep only one open
 (function () {

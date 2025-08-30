@@ -1248,3 +1248,8 @@ a, .chip.is-active{ accent-color: var(--accent); }
 }
 /* Ensure hero content sits above overlay */
 .hero > *{ position: relative; z-index: 2; }
+
+.form-status { margin-top: 8px; font-size: 0.95rem; }
+.form-status.ok { color: #0a7c2f; }   /* green-ish */
+.form-status.err { color: #b00020; }  /* red-ish */
+

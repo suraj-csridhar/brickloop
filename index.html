@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  />
+		<title>Brickloop Advisors (Unit of Hoysalas Realtors) | Builder-Neutral Real Estate Advisory · Bengaluru</title>
+		<!-- Favicon / App Icon -->
+		<link rel="icon" href="assets/favicons/Logo.png" sizes="32x32" />
+		<link rel="apple-touch-icon" href="assets/favicons/Logo.png?v=2" />
+		<!-- Typography: Montserrat (headings) + Lato (body) -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+
+		<!-- Main CSS -->
+		 <script>
+			(function () {
+				var KEY = 'bl-theme';
+				var DARK = 'dark';
+				var C = 'theme-dark';
+				try {
+				var saved = localStorage.getItem(KEY);
+				var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+				if (saved === DARK || (saved === null && prefersDark)) {
+					document.documentElement.classList.add(C);
+					document.documentElement.setAttribute('data-theme', 'dark');
+				} else {
+					document.documentElement.classList.remove(C);
+					document.documentElement.setAttribute('data-theme', 'light');
+				}
+				} catch (e) {}
+			})();
+			</script>
+		<meta name="theme-color" content="#0b0f17" media="(prefers-color-scheme: dark)">
+		<meta name="theme-color" content="#ffffff"  media="(prefers-color-scheme: light)">
+		<link rel="preload" href="assets/css/brickloop.css" as="style" />
+		<link rel="stylesheet" href="assets/css/brickloop.css" />
+	</head>
+	<body class="theme-dark accent-gold">
+		<header class="site-header">
+			<div class="container header-row">
+				<a href="/" class="brand" aria-label="Brickloop Advisors home">
+					<img
+        src="assets/favicons/Logo.png?v=2"
+        alt="Brickloop Advisors logo"
+        width="48" height="48"
+        class="brand-logo"
+		fetchpriority="high"
+      />
+					<span class="brand-name">Brickloop Advisors - Unit of Hoysala Realtors</span>
+				</a>
+				<nav class="site-nav" aria-label="Primary">
+					<button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">Menu</button>
+					<ul id="nav-menu" class="nav-menu">
+						<li>
+							<a href="#home" data-spy="home">Home</a>
+						</li>
+						<li>
+							<a href="#buy" data-spy="buy">Buy</a>
+						</li>
+						<li>
+							<a href="#why" data-spy="why">Why Us?</a>
+						</li>
+						<li>
+							<a href="#builders" data-spy="builders">Partners</a>
+						</li>
+						<li>
+							<a href="#services" data-spy="services">Our Services</a>
+						</li>
+						<li>
+							<a href="#value" data-spy="value">Value Picks</a>
+						</li>
+						<li>
+							<a href="#contact" data-spy="contact">Contact</a>
+						</li>
+						<li>
+							<a href="#faq" data-spy="faq">FAQ</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+		<main id="app" class="container">
+			<!-- HERO -->
+			<p style="margin-top:.5rem;"></p>
+			<section id="home" class="hero hero--img">
+				<div class="hero-inner">
+					<h1 class="hero-title">Advisory-Driven Property Solutions</h1>
+					<p class="hero-sub">Bengaluru • Curated Homes • Micro-Commercial Focus</p>
+					<a href="#contact" class="btn btn-primary">Talk to an Advisor</a>
+					<link rel="preload" as="image" href="assets/img/hero-image.jpg" />
+				</div>
+			</section>
+			<!-- FIND YOUR HOME -->
+			<section id="buy" class="section two-col">
+				<div>
+					<h2>Find Your Home</h2>
+					<p>Curated apartments, villas and plots—matched to your budget and lifestyle. Builder-neutral. Zero commission.</p>
+					<ul class="feature-list">
+						<li>Personalised shortlists across top developers</li>
+						<li>Site visits and hand-holding till closure</li>
+						<li>Loan assistance & paperwork guidance</li>
+						<li>NRI & first-time buyer support</li>
+					</ul>
+					<p>
+						<a class="btn btn-primary" href="#contact">Talk to an Advisor</a>
+					</p>
+				</div>
+				<figure class="media-card">
+					<img src="assets/img/find-your-home.png" alt="Residential property advisory" />
+				</figure>
+			</section>
+			<!-- INVEST SMARTER -->
+			<section id="invest" class="section two-col">
+				<div>
+					<h2>Invest Smarter</h2>
+					<p>High-impact micro-commercial options: compact retail, cloud kitchens, co-work, and more—without large lease headaches.</p>
+					<ul class="feature-list">
+						<li>Builder-neutral evaluation and due diligence</li>
+						<li>Yield insights & conservative projections</li>
+						<li>Tenant sourcing via verified network</li>
+						<li>Interior & fit-out coordination (optional)</li>
+					</ul>
+					<p>
+						<a class="btn btn-primary" href="#contact">Get Investment Options</a>
+					</p>
+				</div>
+				<figure class="media-card">
+					<img src="assets/img/integrated-township.png" alt="Modern integrated township in Bengaluru" />
+				</figure>
+			</section>
+			<!-- WHY CHOOSE US -->
+			<section id="why" class="section section--cards">
+				<h2>Why choose Brickloop?</h2>
+				<ul class="card-grid">
+					<li class="card">
+						<h3>No Commissions</h3>
+						<p>100% advisory—your interests first, always.</p>
+					</li>
+					<li class="card">
+						<h3>Builder-Neutral</h3>
+						<p>We curate across top developers—no bias.</p>
+					</li>
+					<li class="card">
+						<h3>Curated Micro-Commercial</h3>
+						<p>High-impact, flexible spaces for small businesses.</p>
+					</li>
+					<li class="card">
+						<h3>Personalised & Human-First</h3>
+						<p>Handpicked options matched to your goals.</p>
+					</li>
+					<li class="card">
+						<h3>Strong Network</h3>
+						<p>Developers, lenders, and vetted vendors on tap.</p>
+					</li>
+					<li class="card">
+						<h3>NRI & First-Time Buyers</h3>
+						<p>End-to-end guidance with transparent process.</p>
+					</li>
+				</ul>
+			</section>
+			<!-- FEATURED BUILDERS -->
+			<section id="builders" class="section section--cards builders">
+				<h2>Featured Builders</h2>
+				<p class="section-sub">Builder-neutral curation across reputed developers in Bengaluru.</p>
+				<ul class="logo-grid">
+					<li>
+						<a class="logo-card" target="_blank" rel="noopener">
+							<img src="assets/favicons/Prestige_Group.png" alt="Prestige Group logo" />
+							<span>Prestige Group</span>
+						</a>
+					</li>
+					<li>
+						<a class="logo-card" target="_blank" rel="noopener">
+							<img src="assets/favicons/Brigade.png" alt="Brigade Group logo" />
+							<span>Brigade Group</span>
+						</a>
+					</li>
+					<li>
+						<a class="logo-card" target="_blank" rel="noopener">
+							<img src="assets/favicons/Sobha.png" alt="Sobha Group logo" />
+							<span>Sobha Group</span>
+						</a>
+					</li>
+					<li>
+						<a class="logo-card" target="_blank" rel="noopener">
+							<img src="assets/favicons/Godrej-Properties.png" alt="Godrej Homes logo" />
+							<span>Godrej Properties</span>
+						</a>
+					</li>
+					<li>
+						<a class="logo-card" target="_blank" rel="noopener">
+							<img src="assets/favicons/Lodha.png" alt="Lodha Homes logo" />
+							<span>Lodha</span>
+						</a>
+					</li>
+					<li>
+						<a class="logo-card" target="_blank" rel="noopener">
+							<img src="assets/favicons/Birla_Estates.png" alt="Birla Estates logo" />
+							<span>Birla Estates</span>
+						</a>
+					</li>
+					<li>
+						<a class="logo-card" target="_blank" rel="noopener">
+							<img src="assets/favicons/Sumadhura.jpeg" alt="Sumadhura logo" />
+							<span>Sumadhura</span>
+						</a>
+					</li>
+					<li>
+						<a class="logo-card" target="_blank" rel="noopener">
+							<img src="assets/favicons/DS Max.jpeg" alt="DS Max logo" />
+							<span>DS Max</span>
+						</a>
+					</li>
+					<li>
+						<a class="logo-card" target="_blank" rel="noopener">
+							<img src="assets/favicons/Nambiar-Builders.webp" alt="Purvankara logo" />
+							<span>Nambiar Builders</span>
+						</a>
+					</li>
+					<li>
+						<a class="logo-card" target="_blank" rel="noopener">
+							<img src="assets/favicons/Provident.jpg" alt="Provident logo" />
+							<span>Provident</span>
+						</a>
+					</li>
+					<li>
+						<a class="logo-card" target="_blank" rel="noopener">
+							<img src="assets/favicons/Konig Homes.jpeg" alt="Konig Homes logo" />
+							<span>Konig Homes</span>
+						</a>
+					</li>
+					<li>
+						<a class="logo-card" target="_blank" rel="noopener">
+							<img src="assets/favicons/Signature Dwellings.jpeg" alt="DS Max logo" />
+							<span>Signature Dwellings</span>
+						</a>
+					</li>
+				</ul>
+			</section>
+			<!-- SERVICES -->
+			<section id="services" class="section section--cards">
+				<h2>Services</h2>
+				<ul class="card-list">
+					<li class="card">
+						<h3>Property Advisory</h3>
+						<p>Curated homes & investments across budgets.</p>
+					</li>
+					<li class="card">
+						<h3>Buying Assistance</h3>
+						<p>Negotiations, documentation, and coordination.</p>
+					</li>
+					<li class="card">
+						<h3>Financial Advisory</h3>
+						<p>Loan support and rental-yield insights.</p>
+					</li>
+					<li class="card">
+						<h3>Interior Design</h3>
+						<p>Design consults and vendor coordination.</p>
+					</li>
+					<li class="card">
+						<h3>Tenant Sourcing</h3>
+						<p>Verified tenants for lease and rentals.</p>
+					</li>
+					<li class="card">
+						<h3>NRI Desk</h3>
+						<p>Tailored solutions for overseas investors.</p>
+					</li>
+				</ul>
+			</section>
+			<!-- SMART VALUE PICKS -->
+			<section id="value" class="section section--cards">
+				<h2>Smart Value Picks — Curated for You</h2>
+				<p class="section-sub">
+    Transparent reasons to consider these pockets: price advantage, yield potential, and connectivity.
+  </p>
+				<ul class="card-grid value-grid">
+					<!-- Pick 1 -->
+					<li class="card value-card">
+						<div class="value-tags">
+							<span class="badge">Metro Proximity</span>
+							<span class="badge badge-alt">Price Advantage</span>
+						</div>
+						<h3>Sarjapur–Sompura Belt</h3>
+						<p class="value-why">Upcoming metro + strong social infra; good entry prices vs. ORR/Whitefield.</p>
+						<ul class="kv">
+							<li>
+								<span>Ticket size</span>
+								<strong>₹1.1–1.8 Cr</strong>
+							</li>
+							<li>
+								<span>Buyer profile</span>
+								<strong>End-use / NRI</strong>
+							</li>
+							<li>
+								<span>Signals of value</span>
+								<strong>Metro, schools, growing retail</strong>
+							</li>
+						</ul>
+						<div class="media-card">
+							<img src="assets/img/sarjapur-corridor.png" alt="Aerial view of Sarjapur with residential developments" loading="lazy" decoding="async" />
+						</div>
+						<div class="value-cta">
+							<a href="#contact" class="btn btn-primary" aria-label="Get details for Sarjapur–Sompura value picks">Get Details</a>
+						</div>
+					</li>
+					<!-- Pick 2 -->
+					<li class="card value-card">
+						<div class="value-tags">
+							<span class="badge">High Yield</span>
+							<span class="badge badge-alt">IT Corridors</span>
+						</div>
+						<h3>North Bengaluru Growth Corridor</h3>
+						<p class="value-why">Airport influence + Grade-A offices; resilient rental demand.</p>
+						<ul class="kv">
+							<li>
+								<span>Ticket size</span>
+								<strong>₹90L–₹1.6 Cr</strong>
+							</li>
+							<li>
+								<span>Buyer profile</span>
+								<strong>Investor / First-home</strong>
+							</li>
+							<li>
+								<span>Signals of value</span>
+								<strong>Yield, infra pipeline</strong>
+							</li>
+						</ul>
+						<div class="media-card">
+							<img src="assets/img/north-bengaluru.jpg" alt="Modern residential apartment complex in North Bengaluru" loading="lazy" decoding="async" />
+						</div>
+						<div class="value-cta">
+							<a href="#contact" class="btn btn-primary" aria-label="Get details for North Bengaluru value picks">Get Details</a>
+						</div>
+					</li>
+					<!-- Pick 3 -->
+					<li class="card value-card">
+						<div class="value-tags">
+							<span class="badge">Premium Liveability</span>
+							<span class="badge badge-alt">Balanced Yield</span>
+						</div>
+						<h3>JP Nagar / Bannerghatta Prime-Luxe</h3>
+						<p class="value-why">Mature neighbourhoods with quality schools, hospitals and retail.</p>
+						<ul class="kv">
+							<li>
+								<span>Ticket size</span>
+								<strong>₹1.6–₹3.2 Cr</strong>
+							</li>
+							<li>
+								<span>Buyer profile</span>
+								<strong>Upgrade / NRI</strong>
+							</li>
+							<li>
+								<span>Signals of value</span>
+								<strong>Social infra, brand inventory</strong>
+							</li>
+						</ul>
+						<div class="media-card">
+							<img src="assets/img/ecity-south-bengaluru.png" alt="Premium residential pocket near metro" loading="lazy" decoding="async" />
+						</div>
+						<div class="value-cta">
+							<a href="#contact" class="btn btn-primary" aria-label="Get details for E-City/ JP Nagar / Bannerghatta value picks">Get Details</a>
+						</div>
+					</li>
+				</ul>
+			</section>
+			<!-- QUICK ENQUIRY -->
+			<section id="enquiry" class="section enquiry">
+				<div class="enquiry-wrap">
+					<header class="enquiry-head">
+						<h2>Quick Enquiry</h2>
+						<p>Tell us the basics—we’ll share curated options fast.</p>
+					</header>
+					<form id="enquiryForm" class="enquiry-form" novalidate>
+						<input type="text" name="company" autocomplete="off" tabindex="-1" style="display:none" />
+						<input type="hidden" name="source" value="website" />
+						<div class="field">
+							<label for="name">Name *</label>
+							<input id="name" name="name" type="text" placeholder="Your full name" required />
+						</div>
+						<div class="field">
+							<label for="phone">Phone (India) *</label>
+							<input id="phone" name="phone" type="tel" inputmode="numeric"
+               placeholder="10-digit mobile" pattern="^[6-9]\d{9}$" required />
+							<small class="hint">Starts with 6–9, 10 digits</small>
+						</div>
+						<div class="field">
+							<label for="area">Preferred Area</label>
+							<input id="area" name="area" type="text" placeholder="e.g., Sarjapur, JP Nagar" />
+						</div>
+						<div class="field">
+							<label for="budget">Budget Range</label>
+							<select id="budget" name="budget">
+								<option value="">Select</option>
+								<option>₹60L–₹90L</option>
+								<option>₹90L–₹1.3 Cr</option>
+								<option>₹1.3–₹1.8 Cr</option>
+								<option>₹1.8–₹2.5 Cr</option>
+								<option>₹2.5–₹4 Cr</option>
+								<option>₹4 Cr+</option>
+							</select>
+						</div>
+						<div class="field field-full">
+							<label for="need">Looking for</label>
+							<input id="need" name="need" type="text" placeholder="Apartment / Villa / Plot / Micro-commercial" />
+						</div>
+						<div class="actions">
+							<button type="submit" class="btn btn-primary">Send via WhatsApp</button>
+							<a id="emailFallback" class="btn btn-outline" href="#" aria-label="Email enquiry instead">Email instead</a>
+						</div>
+						<p class="form-note">We don’t spam. Builder-neutral, zero-commission advisory.</p>
+						<p id="enquiryStatus" class="form-status" aria-live="polite"></p>
+					</form>
+				</div>
+			</section>
+		</main>
+		<footer id="contact" class="site-footer">
+			<div class="container">
+				<div class="contact-panel">
+					<h2 class="contact-title">Talk to an Advisor</h2>
+					<div class="cta-row">
+						<!-- Call -->
+						<a class="btn btn-primary"
+           href="tel:+916362880197"
+           aria-label="Call Brickloop Advisors">
+          Call: +91 63628 80197
+        </a>
+						<!-- WhatsApp -->
+						<a class="btn btn-outline"
+           href="https://wa.me/916362880197?text=Hi%20Brickloop%20Advisors%2C%20I%27m%20interested%20in%20Bengaluru%20real%20estate.%20Can%20you%20assist%3F"
+           target="_blank" rel="noopener"
+           aria-label="WhatsApp Brickloop Advisors">
+          WhatsApp Us
+        </a>
+						<!-- Email -->
+						<a class="btn btn-outline"
+           href="mailto:hoysalasbengaluru@gmail.com?subject=Enquiry%20-%20Brickloop%20Advisors&body=Hi%20Team%2C%0A%0AI%27m%20looking%20for%3A%20%5Bhome%20%7C%20investment%5D%20in%20%5Barea%5D%20around%20%5Bbudget%5D.%0A%0ARegards%2C%0A"
+           aria-label="Email Brickloop Advisors">
+          Email Us
+        </a>
+					</div>
+					<p class="contact-alt">
+        Alternate phone: +91 88677 89313 · Email: hoysalasbengaluru@gmail.com
+      </p>
+				</div>
+				<p style="margin: .5rem 0 1rem;">
+					<a
+    class="btn btn-outline"
+    href="assets/docs/Brickloop-Advisors-Profile.pdf"
+    target="_blank" rel="noopener"
+  >
+    Download Company Profile (PDF)
+  </a>
+				</p>
+				<!-- FAQ -->
+				<section id="faq" class="section faq">
+					<h2>FAQ</h2>
+					<div class="faq-list">
+						<details>
+							<summary>Do you charge any commission?</summary>
+							<div class="faq-a">
+        No. Brickloop Advisors is builder-neutral and does not charge buyers any commission.
+      </div>
+						</details>
+						<details>
+							<summary>Which builders do you work with?</summary>
+							<div class="faq-a">
+        We curate options across reputed developers in Bengaluru. Since we’re neutral, we shortlist based on your brief, not builder tie-ups.
+      </div>
+						</details>
+						<details>
+							<summary>Do you help with home loans and paperwork?</summary>
+							<div class="faq-a">
+        Yes. We assist with loan options, documentation, and coordination through to closure.
+      </div>
+						</details>
+						<details>
+							<summary>What is “micro-commercial” and who is it for?</summary>
+							<div class="faq-a">
+        Compact commercial assets—retail bays, cloud-kitchen pods, co-work suites—suited for investors seeking yield with lower ticket sizes.
+      </div>
+						</details>
+						<details>
+							<summary>Do you support NRI and first-time buyers?</summary>
+							<div class="faq-a">
+        Absolutely. We offer end-to-end guidance, including remote shortlisting and secure documentation workflows.
+      </div>
+						</details>
+						<details>
+							<summary>How quickly will I receive options after I enquire?</summary>
+							<div class="faq-a">
+        Typically within 24–48 hours once we have your brief (area, budget, need). Urgent turnarounds are possible—just mention it.
+      </div>
+						</details>
+					</div>
+				</section>
+				<small>© 
+					<span id="year"></span> Brickloop Advisors · Bengaluru, India
+				</small>
+			</div>
+		</footer>
+		<!-- Plain JS entry (optional interactions) -->
+		<script src="assets/js/brickloop.js" defer></script>
+		<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+	</body>
+</html>

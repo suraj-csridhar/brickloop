@@ -1,0 +1,1230 @@
+/* ===== Brickloop — Foundations (keep at top) ===== */
+:root{
+  /* Brand */
+  --brand-green: #0f3d2e;
+  --brand-gold:  #c7a042;
+
+  /* Layout & spacing */
+  --container-max: 1120px;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+
+  /* Radius & surfaces */
+  --radius: .5rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+
+  /* Neutral palette (HSL triplets for hsl(var(--...))) */
+  --border: 0 0% 86%;
+  --muted:  0 0% 96%;
+}
+
+/* Reset & base */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body{
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  line-height: 1.5;
+  color: #111;
+  background: #fafafa;
+}
+
+img{ max-width: 100%; height: auto; display: block; }
+
+a{ color: inherit; text-decoration-thickness: .08em; }
+:where(a,button,input,select,textarea):focus-visible{
+  outline: 2px solid var(--brand-green);
+  outline-offset: 3px;
+}
+
+.container{
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+/* ===== Header & Branding ===== */
+.site-header {
+  background: #fff;
+  border-bottom: 1px solid hsl(var(--border));
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.brand-logo { border-radius: 50%; display: block; }
+.brand-name { font-weight: 700; letter-spacing: 0.2px; }
+
+/* ===== Nav ===== */
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-nav { position: relative; }
+
+.nav-toggle{
+  display: none;
+  background: transparent;
+  border: 1px solid hsl(var(--border));
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.5rem;
+}
+
+.nav-menu{
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-menu a{
+  text-decoration: none;
+  padding: 0.5rem 0.25rem;
+  border-radius: 0.4rem;
+}
+
+.nav-menu a:hover{ background: hsl(var(--muted)); }
+
+/* Mobile nav */
+@media (max-width: 720px){
+  .nav-toggle { display: inline-block; }
+  .nav-menu{
+    position: absolute;
+    right: 0;
+    top: calc(100% + 0.5rem);
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid hsl(var(--border));
+    border-radius: 0.75rem;
+    padding: 0.5rem;
+    min-width: 12rem;
+    display: none; /* toggled by JS */
+  }
+  .nav-menu.show { display: flex; }
+}
+
+/* ===== Hero ===== */
+.hero{
+  padding: clamp(2rem, 6vw, 4rem) 0;
+}
+
+.hero--img{
+  position: relative;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  background: #0b1f18;
+  min-height: 36vh;
+  display: grid;
+  place-items: center;
+}
+
+/* background image */
+.hero--img::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../img/hero-image.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.55);
+}
+
+.hero-inner{
+  position: relative;
+  text-align: center;
+  color: #fff;
+  padding: 2rem 1rem;
+  max-width: 60rem;
+}
+
+.hero-title{
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.hero-sub{
+  opacity: 0.8;
+  max-width: 48rem;
+}
+
+/* ===== Buttons ===== */
+.btn{
+  display: inline-block;
+  padding: 0.65rem 1rem;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: transform .06s ease, opacity .2s ease;
+}
+.btn:active{ transform: translateY(1px); }
+
+.btn-primary{
+  background: var(--card-brand-700, #0f3d2e);
+  color: #fff;
+  border-color: rgba(255,255,255,0.15);
+}
+.btn-primary:hover{ opacity: 0.9; }
+
+/* ===== Sections ===== */
+.section { padding: 2rem 0; }
+.section h2 { margin-bottom: 0.5rem; }
+
+/* ===== Cards & Layout ===== */
+.section--cards h2 { margin-bottom: 1rem; }
+
+.card-grid,
+.card-list{
+  --gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--gap);
+}
+
+/* 3 columns on desktop, down to 1 on mobile */
+.card-grid{ grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+.card-list{ grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+
+.card{
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius-xl);
+  padding: 1rem;
+  background: #fff;
+}
+
+.card h3{ font-size: 1rem; margin-bottom: 0.35rem; }
+.card p{ opacity: 0.9; line-height: 1.5; }
+
+/* ===== Utilities ===== */
+.sr-only{
+  position: absolute !important;
+  height: 1px; width: 1px;
+  overflow: hidden; clip: rect(1px,1px,1px,1px);
+  white-space: nowrap;
+}
+
+/* Smooth anchor offsets for sticky header */
+:target{ scroll-margin-top: 84px; }
+
+/* ==== Contact panel ==== */
+.site-footer { padding: 2rem 0; }
+
+.contact-panel{
+  background: #fff;
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius-xl);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.contact-title{
+  margin: 0 0 .75rem;
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  font-weight: 700;
+}
+
+.cta-row{
+  display: flex;
+  gap: .75rem;
+  flex-wrap: wrap;
+  margin-bottom: .5rem;
+}
+
+.cta-row .btn{
+  flex: 1 1 12rem;       /* responsive: grow but never too tiny */
+  text-align: center;
+}
+
+/* subtle outline button */
+.btn-outline{
+  background: transparent;
+  border-color: hsl(var(--border));
+}
+
+/* mobile stacking */
+@media (max-width: 560px){
+  .cta-row .btn{ flex: 1 1 100%; }
+}
+
+.contact-alt{
+  opacity: .8;
+  margin: 0;
+  font-size: .95rem;
+}
+
+/* ==== Two-column layout (stacks on mobile) ==== */
+.two-col{
+  display: grid;
+  gap: 1rem;
+  align-items: start;
+}
+@media (min-width: 900px){
+  .two-col{
+    grid-template-columns: 1.15fr .85fr;
+  }
+}
+
+/* ==== Feature list ==== */
+.feature-list{
+  margin: .5rem 0 1rem;
+  padding-left: 1.2rem;         /* simple browser bullets */
+}
+.feature-list li{
+  margin: .25rem 0;
+  line-height: 1.5;
+}
+
+/* ==== Media card ==== */
+.media-card{
+  margin: 0;
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: #fff;
+}
+.media-card img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ==== Media sizing (keeps images tidy) ==== */
+.media-card{
+  /* default ratio; easy to override per card */
+  --media-ar: 3 / 2;          /* try 16/9 or 4/3 if you prefer */
+  aspect-ratio: var(--media-ar);
+  overflow: hidden;           /* trims overflow cleanly */
+}
+
+.media-card img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;          /* fills the frame, crops excess */
+  object-position: center;    /* keeps center in view */
+}
+
+/* Active link highlight */
+.nav-menu a.active{
+  background: hsl(var(--muted));
+  font-weight: 600;
+}
+
+/* ==== Smart Value Picks ==== */
+.section-sub{
+  margin: .25rem 0 1rem;
+  opacity: .85;
+}
+
+.value-grid .value-card{
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+}
+
+.value-tags{
+  display: flex;
+  gap: .4rem;
+  flex-wrap: wrap;
+}
+
+.badge{
+  display: inline-block;
+  padding: .25rem .55rem;
+  border-radius: 999px;
+  font-size: .8rem;
+  background: color-mix(in srgb, var(--brand-green) 12%, #fff);
+  border: 1px solid hsl(var(--border));
+}
+.badge-alt{
+  background: hsl(var(--muted));
+}
+
+.value-why{
+  margin: .2rem 0 .4rem;
+}
+
+.kv{
+  list-style: none;
+  padding: 0;
+  margin: .2rem 0 .6rem;
+  display: grid;
+  gap: .35rem;
+}
+.kv li{
+  display: flex;
+  justify-content: space-between;
+  gap: .75rem;
+}
+.kv li span{
+  opacity: .75;
+}
+
+.value-cta{ margin-top: auto; } /* push CTA to bottom for tidy cards */
+
+@media (min-width: 900px){
+  .value-grid .media-card{
+    height: 200px;            /* choose 180–240px as you like */
+    aspect-ratio: auto;
+  }
+}
+
+/* Keep Value Picks images aligned regardless of text length */
+.value-grid .value-card{
+  display: flex;
+  flex-direction: column;
+}
+
+/* Push the image block to the bottom of the card */
+.value-grid .media-card{
+  margin-top: auto;
+}
+
+/* CTA sits just under the image (override earlier auto push) */
+.value-grid .value-cta{
+  margin-top: .75rem; /* was 'auto' earlier */
+}
+
+/* ==== Quick Enquiry ==== */
+.enquiry-wrap{
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius-xl);
+  background: #fff;
+  padding: 1rem;
+}
+
+.enquiry-head h2{ margin: 0 0 .25rem; }
+.enquiry-head p{ opacity: .85; margin: 0 0 .75rem; }
+
+.enquiry-form{
+  display: grid;
+  gap: .75rem;
+  grid-template-columns: 1fr 1fr;
+}
+
+.field{ display: flex; flex-direction: column; gap: .35rem; }
+.field-full{ grid-column: 1 / -1; }
+
+.enquiry-form input,
+.enquiry-form select{
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  padding: .6rem .7rem;
+  background: #fff;
+  font: inherit;
+}
+
+.enquiry-form input:focus,
+.enquiry-form select:focus{ outline-color: var(--brand-green); }
+
+.hint{
+  font-size: .8rem;
+  opacity: .75;
+}
+
+.actions{
+  grid-column: 1 / -1;
+  display: flex;
+  gap: .6rem;
+  flex-wrap: wrap;
+  margin-top: .25rem;
+}
+
+.form-note{
+  grid-column: 1 / -1;
+  opacity: .75;
+  margin: .25rem 0 0;
+  font-size: .95rem;
+}
+
+/* Mobile stack */
+@media (max-width: 720px){
+  .enquiry-form{ grid-template-columns: 1fr; }
+}
+
+/* ==== FAQ (details/summary) ==== */
+.faq-list{
+  display: grid;
+  gap: .6rem;
+}
+
+.faq details{
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius-xl);
+  background: #fff;
+  padding: .25rem .75rem;
+}
+
+.faq summary{
+  cursor: pointer;
+  list-style: none;          /* hide default marker */
+  padding: .65rem .25rem;
+  font-weight: 600;
+  outline: none;
+}
+
+.faq summary::-webkit-details-marker { display: none; } /* Safari/Chrome */
+
+.faq summary::after{
+  content: "▾";
+  float: right;
+  transform: rotate(-90deg);
+  transition: transform .15s ease;
+  opacity: .7;
+}
+
+.faq details[open] summary::after{
+  transform: rotate(0deg);
+  opacity: 1;
+}
+
+.faq .faq-a{
+  padding: 0 .25rem .75rem;
+  opacity: .9;
+  line-height: 1.6;
+}
+
+/* ==== Featured Builders ==== */
+.logo-grid{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.logo-card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+  background: #fff;
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius-xl);
+  padding: 1rem;
+  text-decoration: none;
+  color: inherit;
+  transition: transform .06s ease, box-shadow .2s ease;
+}
+
+.logo-card:hover{ transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,0,0,.06); }
+
+.logo-card img{
+  height: 40px;               /* uniform logo height */
+  max-width: 180px;           /* avoid overflow */
+  object-fit: contain;
+  filter: grayscale(100%) opacity(.9);
+  transition: filter .2s ease;
+}
+.logo-card:hover img{ filter: none; }
+
+.logo-card span{
+  font-size: .9rem;
+  opacity: .9;
+  text-align: center;
+}
+
+/* Text-only fallback tile */
+.logo-fallback{
+  gap: .35rem;
+}
+.fallback-initials{
+  width: 64px; height: 44px;
+  display: grid; place-items: center;
+  border: 1px dashed hsl(var(--border));
+  border-radius: .5rem;
+  font-weight: 700;
+  opacity: .7;
+}
+
+/* ==== Dark Theme (opt-in via .theme-dark on <body> or <html>) ==== */
+.theme-dark{
+  /* darker neutrals for existing hsl(var(--...)) uses */
+  --border: 0 0% 22%;
+  --muted:  0 0% 12%;
+}
+
+.theme-dark body{
+  background: #0b0f0e;       /* near-black with green tint */
+  color: #e6ede9;            /* soft off-white */
+}
+
+/* Header / nav */
+.theme-dark .site-header{
+  background: #0e1412;
+  border-bottom: 1px solid hsl(var(--border));
+}
+.theme-dark .nav-menu a:hover{
+  background: hsl(var(--muted));
+}
+
+/* Cards & panels */
+.theme-dark .card,
+.theme-dark .logo-card,
+.theme-dark .contact-panel,
+.theme-dark .enquiry-wrap,
+.theme-dark .media-card{
+  background: #101614;
+  border-color: hsl(var(--border));
+}
+
+/* Hero */
+.theme-dark .hero--img{ background: #07100c; } /* keeps a very dark base */
+.theme-dark .hero--img::before{ filter: brightness(0.45); } /* darker overlay for legibility */
+
+/* Buttons */
+.theme-dark .btn-outline{
+  background: transparent;
+  border-color: hsl(var(--border));
+  color: #e6ede9;
+}
+
+/* Forms */
+.theme-dark .enquiry-form input,
+.theme-dark .enquiry-form select{
+  background: #0f1513;
+  border: 1px solid hsl(var(--border));
+  color: #e6ede9;
+}
+.theme-dark .enquiry-form input::placeholder{
+  color: #c8d1cc;
+}
+
+/* Subtle text */
+.theme-dark .section-sub,
+.theme-dark .contact-alt,
+.theme-dark .card p,
+.theme-dark .form-status{
+  opacity: .9;
+}
+
+/* Featured Builders logos look nicer on dark */
+.theme-dark .logo-card img{
+  filter: grayscale(100%) opacity(.95) brightness(1.05);
+}
+
+/* ====== NAV REFINEMENT (keep your existing HTML) ====== */
+:root{
+  --nav-h: 64px;              /* a bit slimmer */
+  --nav-gap: 18px;            /* tighter link spacing */
+  --brand-size: clamp(1.1rem, 0.95rem + 0.55vw, 1.45rem);
+  --brand-sub-size: clamp(0.72rem, 0.68rem + 0.15vw, 0.82rem);
+  --nav-link-size: clamp(0.88rem, 0.82rem + 0.20vw, 1.00rem); /* smaller than brand */
+}
+
+/* Bar: simpler, flatter, closer to your original */
+.site-header{
+  height: var(--nav-h);
+  background: rgba(11,15,23,0.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line);
+  box-shadow: none;
+}
+.site-header .nav-row{ height: 100%; }
+
+/* Brand: single-line, stronger than menu */
+.brand{ gap: 10px; align-items: center; text-decoration: none; }
+.brand-logo{ width: 38px; height: 38px; border-radius: 10px; object-fit: cover; }
+.brand-text{ display:flex; align-items: baseline; gap: 8px; line-height: 1; }
+.brand-title{
+  white-space: nowrap;           /* prevents the stacked “Brickloop / Advisors” wrap */
+  font-size: var(--brand-size);
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  color: var(--text);
+}
+.brand-sub{
+  font-size: var(--brand-sub-size);
+  font-weight: 600;
+  color: var(--muted);
+  opacity: .9;
+}
+@media (max-width: 980px){
+  .brand-sub{ display:none; }    /* stays out of the way on small screens */
+}
+
+/* Menu: smaller, calmer */
+.nav-links{ gap: var(--nav-gap); }
+.nav-link{
+  font-size: var(--nav-link-size);
+  font-weight: 600;
+  padding: 6px 10px;             /* tighter pill */
+  color: var(--text);
+  text-decoration: none;
+  border-radius: 10px;           /* softer corners */
+  background: transparent;
+  transition: color .15s ease, background .15s ease;
+}
+.nav-link:hover{ background: var(--card); }
+.nav-link:focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* Active state: understated underline instead of chunky pill */
+.nav-link.is-active{
+  background: transparent;
+  box-shadow: none;
+  position: relative;
+}
+.nav-link.is-active::after{
+  content: "";
+  position: absolute;
+  left: 8px; right: 8px; bottom: 2px;
+  height: 2px; border-radius: 2px;
+  background: var(--accent);
+  opacity: .9;
+}
+
+/* Optional: make the right-side CTA quieter so the brand leads */
+.btn-quiet-cta{
+  height: 36px; padding: 0 12px;
+  font-size: 0.92rem; font-weight: 700;
+  background: var(--card);
+  border: 1px solid var(--line);
+}
+
+/* ===== NAV — compact, clean, reliable ===== */
+:root{
+  --nav-h: 56px;                    /* shorter bar */
+  --nav-gap: 14px;                  /* tighter spacing */
+  --brand-size: clamp(1.0rem, 0.9rem + 0.4vw, 1.25rem);
+  --brand-sub-size: clamp(0.68rem, 0.64rem + 0.15vw, 0.8rem);
+  --nav-link-size: clamp(0.80rem, 0.78rem + 0.18vw, 0.95rem); /* noticeably smaller */
+}
+
+/* Bar: keep it above everything */
+.site-header{
+  height: var(--nav-h);
+  background: rgba(11,15,23,0.92);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(6px);
+  z-index: 2000;
+}
+
+/* Brand: smaller logo + single line */
+.brand-logo{ width: 32px; height: 32px; border-radius: 8px; object-fit: cover; }
+.brand-text{ display:flex; align-items:center; gap: 8px; line-height: 1; }
+.brand-title{ font-size: var(--brand-size); font-weight: 800; letter-spacing: 0.2px; white-space: nowrap; }
+.brand-sub{ font-size: var(--brand-sub-size); color: var(--muted); font-weight: 600; }
+@media (max-width: 980px){ .brand-sub{ display:none; } }
+
+/* Menu links: compact but keep ~40px hit area */
+.nav-links{ gap: var(--nav-gap); }
+.nav-link{
+  font-size: var(--nav-link-size);
+  font-weight: 600;
+  padding: 6px 8px;                /* visually small */
+  line-height: 1;
+  border-radius: 10px;
+  color: var(--text);
+  text-decoration: none;
+  position: relative;
+}
+/* keep the target ~40px tall via nav bar height */
+.site-header .nav-row{ height: 100%; align-items: center; }
+
+/* Hover/Focus */
+.nav-link:hover{ background: var(--card); }
+.nav-link:focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* Kill the chunky active pill if any old styles exist */
+.nav-link.is-active{ background: transparent !important; box-shadow: none !important; }
+.nav-link.is-active::after{
+  content: ""; position: absolute; left: 6px; right: 6px; bottom: 2px;
+  height: 2px; border-radius: 2px; background: var(--accent); opacity: .9;
+}
+
+/* Quiet CTA even smaller */
+.btn-quiet-cta{ height: 32px; padding: 0 12px; font-size: 0.9rem; }
+
+/* Sticky header offset for in-page anchors */
+section[id]{ scroll-margin-top: calc(var(--nav-h) + 16px); }
+
+/* If the hero uses overlays, make sure they don't block clicks */
+.hero::before,
+.hero::after{ pointer-events: none; }
+
+/* ===== FAQ — Dark theme compatible, high-contrast, accessible ===== */
+#faq, .faq{
+  --faq-bg: var(--card);
+  --faq-bg-hover: color-mix(in oklab, var(--card), white 6%);
+  --faq-bg-open: color-mix(in oklab, var(--card), white 8%);
+  --faq-text: var(--text);
+  --faq-muted: var(--muted);
+  --faq-line: var(--line);
+}
+
+/* Nuke any washed-out styles coming from earlier rules */
+#faq *, .faq *{
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+/* Item shell */
+#faq details, .faq details{
+  margin: 12px 0;
+  background: var(--faq-bg) !important;  /* was likely #fff */
+  border: 1px solid var(--faq-line);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: background .15s ease, border-color .15s ease;
+}
+
+/* Summary row */
+#faq summary, .faq summary{
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  cursor: pointer;
+  color: var(--faq-text) !important;    /* key: readable on dark */
+  font-weight: 700;
+  line-height: 1.2;
+}
+#faq summary::-webkit-details-marker,
+.faq summary::-webkit-details-marker{ display: none; }
+
+/* Chevron */
+#faq summary::after, .faq summary::after{
+  content: "▸";
+  font-size: 1rem;
+  color: var(--faq-muted);
+  transition: transform .16s ease, color .16s ease, opacity .16s ease;
+  opacity: .9;
+}
+#faq details[open] summary::after,
+.faq details[open] summary::after{
+  transform: rotate(90deg);
+  color: var(--accent);
+}
+
+/* Hover & focus */
+#faq summary:hover, .faq summary:hover{ background: var(--faq-bg-hover); }
+#faq summary:focus-visible, .faq summary:focus-visible{
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Open state */
+#faq details[open], .faq details[open]{ background: var(--faq-bg-open); border-color: var(--faq-line); }
+
+/* Answer body */
+#faq .answer, .faq .answer,
+#faq details > div, .faq details > div{   /* covers <div> or .answer containers */
+  padding: 16px 18px 18px;
+  color: var(--faq-text);
+}
+#faq p, .faq p{ color: var(--faq-muted); }
+
+/* Optional: divider line between question and answer */
+#faq details[open] summary, .faq details[open] summary{
+  border-bottom: 1px solid var(--faq-line);
+}
+
+/* Respect sticky header when linking to #faq */
+#faq{ scroll-margin-top: calc(var(--nav-h) + 16px); }
+
+/* Motion-safe */
+@media (prefers-reduced-motion: reduce){
+  #faq summary::after, .faq summary::after{ transition: none; }
+}
+
+/* ===== Featured Builders — bigger logos, no dim ===== */
+/* Adjust #partners to your section id if different */
+#partners, .featured-builders, .builders { 
+  --builder-logo-h: clamp(56px, 6vw, 88px); /* uniform logo height */
+  --builder-card-h: clamp(140px, 18vw, 180px);
+}
+
+/* Cards stay uniform height */
+#partners .builder-card,
+.featured-builders .builder-card,
+.builders .builder-card{
+  min-height: var(--builder-card-h);
+  padding: 18px;
+  border-radius: 18px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  display: grid;
+  grid-template-rows: 1fr auto;
+  place-items: center;
+}
+
+/* Centered logo area with consistent height */
+#partners .builder-logo,
+.featured-builders .builder-logo,
+.builders .builder-logo{
+  height: var(--builder-logo-h);
+  max-width: 90%;
+  object-fit: contain;           /* prevents cropping */
+  display: block;
+  image-rendering: -webkit-optimize-contrast;
+  filter: none !important;       /* kill grayscale/blur from earlier styles */
+  opacity: 1 !important;         /* kill “dim” look */
+  mix-blend-mode: normal !important;
+}
+
+/* If you used a wrapper, normalize it too (safe to include either way) */
+#partners .builder-logo-wrap,
+.featured-builders .builder-logo-wrap,
+.builders .builder-logo-wrap{
+  height: var(--builder-logo-h);
+  display: flex; align-items: center; justify-content: center;
+  width: 100%;
+}
+
+/* Name styling */
+#partners .builder-name,
+.featured-builders .builder-name,
+.builders .builder-name{
+  margin-top: 10px;
+  font-weight: 700;
+  color: var(--text);
+  text-align: center;
+}
+
+/* Subtle hover lift without color changes */
+#partners .builder-card:hover,
+.featured-builders .builder-card:hover,
+.builders .builder-card:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.22);
+  transition: transform .15s ease, box-shadow .2s ease;
+}
+
+/* If any global "logo strip" rules were adding grayscale, neutralize them here */
+#partners img,
+.featured-builders img,
+.builders img{
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+/* ===== Featured Builders — uniform logo size ===== */
+/* Adjust #partners/.builders/.featured-builders to match your section */
+#partners, .builders, .featured-builders{
+  --logo-box-w: clamp(120px, 18vw, 160px); /* same box for every logo */
+  --logo-box-ratio: 4 / 3;                 /* 4:3 works well for most logos */
+  --logo-inset: 86%;                       /* logo fills this % of the box */
+}
+
+/* Card frame (keeps cards consistent; keep if you already have similar rules) */
+#partners .builder-card,
+.builders .builder-card,
+.featured-builders .builder-card{
+  display: grid;
+  grid-template-rows: 1fr auto;
+  place-items: center;
+  min-height: clamp(140px, 18vw, 180px);
+}
+
+/* Uniform logo container */
+#partners .builder-logo-wrap,
+.builders .builder-logo-wrap,
+.featured-builders .builder-logo-wrap{
+  width: var(--logo-box-w);
+  aspect-ratio: var(--logo-box-ratio);
+  display: flex; align-items: center; justify-content: center;
+  /* optional: neat backdrop for transparent PNGs
+     background: #fff; border-radius: 10px; border:1px solid var(--line); */
+}
+
+/* The actual <img> (or <svg>) */
+#partners .builder-logo-wrap > img,
+.builders .builder-logo-wrap > img,
+.featured-builders .builder-logo-wrap > img{
+  width: var(--logo-inset);
+  height: var(--logo-inset);
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;           /* never stretch */
+  object-position: center;
+  filter: none !important;       /* no grayscale/dim */
+  opacity: 1 !important;
+  mix-blend-mode: normal !important;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* Name text */
+#partners .builder-name,
+.builders .builder-name,
+.featured-builders .builder-name{
+  margin-top: 10px;
+  font-weight: 700;
+  color: var(--text);
+  text-align: center;
+}
+
+/* ===== Featured Builders — strict uniform logo sizing ===== */
+/* Adjust section selector if yours is different */
+#partners, .featured-builders, .builders{
+  --logo-box-w: 160px;          /* same container for all logos */
+  --logo-box-ratio: 4 / 3;      /* 1/1 (square) or 16/9 also OK */
+  --logo-target: 84%;           /* how much of the box the logo fills */
+  --logo-bg: transparent;       /* use #fff if you want a white tile */
+}
+
+/* Card frame (keep if you already have something similar) */
+#partners .builder-card,
+.featured-builders .builder-card,
+.builders .builder-card{
+  display: grid; grid-template-rows: 1fr auto; place-items: center;
+  min-height: 170px; padding: 18px;
+}
+
+/* Uniform logo container */
+#partners .builder-logo-wrap,
+.featured-builders .builder-logo-wrap,
+.builders .builder-logo-wrap{
+  width: var(--logo-box-w);
+  aspect-ratio: var(--logo-box-ratio);
+  display: flex; align-items: center; justify-content: center;
+  background: var(--logo-bg);
+  border-radius: 12px;
+}
+
+/* The actual image — ignore any inline sizes and fill the same visual size */
+#partners .builder-logo-wrap > img,
+.featured-builders .builder-logo-wrap > img,
+.builders .builder-logo-wrap > img{
+  width: var(--logo-target) !important;   /* same visual size */
+  height: var(--logo-target) !important;  /* same visual size */
+  max-width: 100%; max-height: 100%;
+  object-fit: contain; object-position: center;
+  filter: none !important; opacity: 1 !important; mix-blend-mode: normal !important;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* Name text */
+#partners .builder-name,
+.featured-builders .builder-name,
+.builders .builder-name{
+  margin-top: 10px; font-weight: 700; color: var(--text); text-align: center;
+}
+
+/* ===== Brand Typography ===== */
+:root{
+  --font-head: "Montserrat", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Lato", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* micro-tracking helpers */
+  --track-tight: -0.005em;
+  --track-normal: 0;
+  --track-wide: 0.02em;   /* ~2% tracking is elegant without looking spaced out */
+}
+
+html, body{
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+h1, h2, h3, h4, h5, h6{
+  font-family: var(--font-head);
+  letter-spacing: var(--track-tight);
+}
+
+/* Hero headline refinement */
+.hero h1, .hero-title{
+  font-family: var(--font-head);
+  font-weight: 800;
+  letter-spacing: var(--track-wide);   /* subtle elegance */
+  line-height: 1.12;                   /* tighter for strong display */
+}
+
+/* Brand in header (keeps hierarchy) */
+.brand-title{
+  font-family: var(--font-head);
+  letter-spacing: var(--track-tight);
+}
+
+/* Body copy & FAQ answers look cleaner with Lato */
+.section p, .faq p, .card p{
+  font-family: var(--font-body);
+  letter-spacing: var(--track-normal);
+  line-height: 1.6;
+}
+
+/* CTA: breathing room + confident weight */
+.btn-primary{
+  padding: 14px 28px;          /* more room than before */
+  min-height: 48px;
+  border-radius: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.2;            /* prevents cramped look */
+}
+
+/* Optional: the small header CTA too */
+.btn-quiet-cta{
+  padding: 8px 16px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* =========================
+   1) Accent palettes (opt-in)
+   ========================= */
+:root{
+  /* fallbacks (used if no accent-* class is on <body>) */
+  --accent: #2b6fff;
+  --accent-contrast: #ffffff;
+  --accent-soft: rgba(43,111,255,.12);
+
+  /* depth + gradients */
+  --elev-1: 0 6px 18px rgba(0,0,0,.26);
+  --elev-2: 0 12px 32px rgba(0,0,0,.34);
+  --hero-grad:
+    linear-gradient(
+      to bottom,
+      rgba(11,15,23,.10) 0%,
+      rgba(11,15,23,.55) 55%,
+      rgba(11,15,23,.85) 100%
+    );
+}
+
+/* Deep Teal (calm, trustworthy) */
+body.accent-teal{
+  --accent: #0FA3B1;             /* deep teal */
+  --accent-contrast: #ffffff;
+  --accent-soft: rgba(15,163,177,.14);
+}
+
+/* Muted Gold (premium, warm) */
+body.accent-gold{
+  --accent: #C9A227;             /* refined, not flashy */
+  --accent-contrast: #0b0f17;    /* readable text on gold */
+  --accent-soft: rgba(201,162,39,.18);
+}
+
+/* =========================
+   2) CTA: stand-out + spacing
+   ========================= */
+.btn-primary{
+  background: var(--accent);
+  color: var(--accent-contrast);
+  padding: 14px 28px;            /* more breathing room */
+  min-height: 48px;
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--accent) 60%, #0000);
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--accent) 28%, transparent);
+  font-weight: 700;
+  letter-spacing: .02em;
+  line-height: 1.2;
+  transition: transform .12s ease, box-shadow .18s ease, background .15s ease;
+}
+.btn-primary:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 12px 30px color-mix(in srgb, var(--accent) 34%, transparent);
+}
+.btn-primary:focus-visible{
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* =========================
+   3) Nav hover/active cues
+   ========================= */
+.nav-link:hover{
+  background: var(--accent-soft);
+  color: var(--text);
+}
+.nav-link.is-active{
+  background: transparent;
+  position: relative;
+}
+.nav-link.is-active::after{
+  content:"";
+  position:absolute; left:8px; right:8px; bottom:2px;
+  height:2px; border-radius:2px; background: var(--accent);
+}
+
+/* =========================
+   4) Subtle depth on surfaces
+   ========================= */
+.card, .section.elevate, .builder-card{
+  background: var(--card);
+  box-shadow: var(--elev-1);
+  border: 1px solid var(--line);
+}
+.card:hover, .builder-card:hover{ box-shadow: var(--elev-2); transform: translateY(-1px); }
+
+/* =========================
+   5) Hero: gradient overlay for depth
+   ========================= */
+.hero{
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;            /* already in your style — keep or tweak */
+}
+.hero::before{
+  content:"";
+  position:absolute; inset:0;
+  background: var(--hero-grad);   /* adds depth & legibility */
+  pointer-events: none;           /* ensures buttons/links remain clickable */
+}
+/* Optional soft vignette edges (very subtle) */
+.hero::after{
+  content:"";
+  position:absolute; inset:-8%;
+  background: radial-gradient(80% 60% at 50% 60%, #0000 40%, rgba(0,0,0,.25) 100%);
+  pointer-events: none;
+}
+
+/* =========================
+   6) Links, chips, focus states
+   ========================= */
+a, .chip.is-active{ accent-color: var(--accent); }
+:focus-visible{ outline-color: var(--accent); }
+
+/* =========================
+   7) Fallback for older browsers (no color-mix)
+   ========================= */
+@supports not (color: color-mix(in srgb, #000, #fff)){
+  .btn-primary{ box-shadow: 0 8px 22px rgba(0,0,0,.28); border-color: rgba(255,255,255,.12); }
+  .nav-link:hover{ background: var(--accent-soft); }
+}
+
+/* Hero background image (path is relative to this CSS file) */
+.hero{
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  background: url("../img/hero-image.jpg") center/cover no-repeat; /* <-- note ../img */
+}
+
+/* Keep gradient overlay above the photo and out of the way */
+.hero::before{
+  content:"";
+  position:absolute; inset:0;
+  background: var(--hero-grad);
+  pointer-events:none; z-index:1;
+}
+/* Ensure hero content sits above overlay */
+.hero > *{ position: relative; z-index: 2; }

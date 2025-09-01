@@ -23,11 +23,11 @@
   --border: 0 0% 86%;
   --muted:  0 0% 96%;
 
-  /* Modern surface tokens (light defaults) */
-  --bg:   #f7f9fc;
+  /* Modern surface tokens (all-white theme) */
+  --bg:   #ffffff;
   --card: #ffffff;
-  --text: #0b1220;
-  --line: rgba(10,20,30,0.08);
+  --text: #1a1a1a;
+  --line: rgba(10,20,30,0.10);
 }
 
 /* Reset & base */
@@ -62,8 +62,8 @@ a{ color: inherit; text-decoration-thickness: .08em; }
 
 /* ===== Header & Branding ===== */
 .site-header {
-  background: #0a0a0a; /* deep black */
-  border-bottom: 1px solid color-mix(in srgb, var(--accent) 26%, transparent);
+  background: #ffffff; /* light, elegant */
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 16%, transparent);
   position: sticky;
   top: 0;
   z-index: 50;
@@ -78,7 +78,15 @@ a{ color: inherit; text-decoration-thickness: .08em; }
   text-decoration: none;
 }
 
-.brand-logo { border-radius: 50%; display: block; }
+.brand-logo {
+  border-radius: 50%;
+  display: block;
+  width: 56px;   /* ensure visibility top-left */
+  height: 56px;
+  background: #ffffff; /* improves contrast on dark header */
+  padding: 3px;
+  border: 1px solid rgba(255,255,255,.12);
+}
 .brand-name { font-weight: 700; letter-spacing: 0.2px; }
 
 /* ===== Nav ===== */
@@ -110,6 +118,10 @@ a{ color: inherit; text-decoration-thickness: .08em; }
   text-decoration: none;
   padding: 0.5rem 0.25rem;
   border-radius: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  font-size: 0.9rem;
 }
 
 .nav-menu a:hover{ background: var(--accent-soft); color: var(--text); }
@@ -170,9 +182,11 @@ a{ color: inherit; text-decoration-thickness: .08em; }
 }
 
 .hero-sub{
-  opacity: 0.92;
+  opacity: 0.85;
   max-width: 48rem;
-  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
 }
 
 /* Make the hero visually full-bleed even inside a container */
@@ -202,7 +216,13 @@ a{ color: inherit; text-decoration-thickness: .08em; }
 
 /* ===== Sections ===== */
 .section { padding: clamp(2rem, 5vw, 4rem) 0; margin-block-end: clamp(1.25rem, 3.5vw, 2.5rem); }
-.section h2 { margin-bottom: 0.5rem; }
+.section h2 {
+  margin-bottom: 0.5rem;
+  font-family: var(--font-head);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+}
 
 /* Alternate section surface with subtle depth */
 .section--alt{
@@ -233,7 +253,7 @@ a{ color: inherit; text-decoration-thickness: .08em; }
   border: 1px solid color-mix(in srgb, var(--accent) 14%, transparent);
   border-radius: var(--radius-xl);
   padding: 1rem;
-  background: #0d0d0d;
+  background: var(--card);
 }
 
 .card h3{ font-size: 1rem; margin-bottom: 0.35rem; }
@@ -254,7 +274,7 @@ a{ color: inherit; text-decoration-thickness: .08em; }
 .site-footer { padding: 2rem 0; }
 
 .contact-panel{
-  background: #0d0d0d;
+  background: var(--card);
   border: 1px solid color-mix(in srgb, var(--accent) 14%, transparent);
   border-radius: var(--radius-xl);
   padding: 1rem;
@@ -325,7 +345,7 @@ a{ color: inherit; text-decoration-thickness: .08em; }
   border: 1px solid color-mix(in srgb, var(--accent) 14%, transparent);
   border-radius: var(--radius-xl);
   overflow: hidden;
-  background: #0d0d0d;
+  background: var(--card);
 }
 .media-card img{
   display: block;
@@ -433,7 +453,7 @@ a{ color: inherit; text-decoration-thickness: .08em; }
 .enquiry-wrap{
   border: 1px solid color-mix(in srgb, var(--accent) 14%, transparent);
   border-radius: var(--radius-xl);
-  background: #0d0d0d;
+  background: var(--card);
   padding: 1rem;
 }
 
@@ -454,7 +474,8 @@ a{ color: inherit; text-decoration-thickness: .08em; }
   border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
   border-radius: var(--radius);
   padding: .6rem .7rem;
-  background: #0c0c0c;
+  background: #ffffff;
+  color: var(--text);
   font: inherit;
 }
 
@@ -669,8 +690,7 @@ a{ color: inherit; text-decoration-thickness: .08em; }
 /* Bar: simpler, flatter, closer to your original */
 .site-header{
   height: var(--nav-h);
-  background: rgba(11,15,23,0.92);
-  backdrop-filter: blur(6px);
+  background: #ffffff;          /* solid white to avoid overlay look */
   border-bottom: 1px solid var(--line);
   box-shadow: none;
 }
@@ -747,9 +767,8 @@ a{ color: inherit; text-decoration-thickness: .08em; }
 /* Bar: keep it above everything */
 .site-header{
   height: var(--nav-h);
-  background: rgba(11,15,23,0.92);
+  background: #ffffff;          /* solid white */
   border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(6px);
   z-index: 2000;
 }
 
@@ -1058,8 +1077,8 @@ section[id]{ scroll-margin-top: calc(var(--nav-h) + 16px); }
 
 /* ===== Brand Typography ===== */
 :root{
-  --font-head: "Montserrat", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-body: "Lato", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-head: "Raleway", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
   /* micro-tracking helpers */
   --track-tight: -0.005em;
@@ -1080,12 +1099,13 @@ h1, h2, h3, h4, h5, h6{
   letter-spacing: var(--track-tight);
 }
 
-/* Hero headline refinement */
+/* Hero headline refinement: wide, light, uppercase */
 .hero h1, .hero-title{
   font-family: var(--font-head);
-  font-weight: 800;
-  letter-spacing: var(--track-wide);   /* subtle elegance */
-  line-height: 1.12;                   /* tighter for strong display */
+  font-weight: 300;                   /* light, like the reference */
+  letter-spacing: 0.12em;             /* generous tracking */
+  text-transform: uppercase;
+  line-height: 1.08;
 }
 
 /* Brand in header (keeps hierarchy) */
@@ -1093,12 +1113,13 @@ h1, h2, h3, h4, h5, h6{
   font-family: var(--font-head);
   letter-spacing: var(--track-tight);
 }
+.brand-name{ font-weight: 600; letter-spacing: .04em; }
 
-/* Body copy & FAQ answers look cleaner with Lato */
+/* Body copy */
 .section p, .faq p, .card p{
   font-family: var(--font-body);
   letter-spacing: var(--track-normal);
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 /* CTA: breathing room + confident weight */
@@ -1106,7 +1127,7 @@ h1, h2, h3, h4, h5, h6{
   padding: 14px 28px;          /* more room than before */
   min-height: 48px;
   border-radius: 14px;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.02em;
   line-height: 1.2;            /* prevents cramped look */
 }
@@ -1114,7 +1135,7 @@ h1, h2, h3, h4, h5, h6{
 /* Optional: the small header CTA too */
 .btn-quiet-cta{
   padding: 8px 16px;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.02em;
 }
 

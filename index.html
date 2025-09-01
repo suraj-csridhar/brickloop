@@ -10,36 +10,18 @@
 		<!-- Favicon / App Icon -->
 		<link rel="icon" href="assets/favicons/Logo.png" sizes="32x32" />
 		<link rel="apple-touch-icon" href="assets/favicons/Logo.png?v=2" />
-		<!-- Typography: Montserrat (headings) + Lato (body) -->
+		<!-- Typography: Raleway (headings) + Inter (body) -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 		<!-- Main CSS -->
-		 <script>
-			(function () {
-				var KEY = 'bl-theme';
-				var DARK = 'dark';
-				var C = 'theme-dark';
-				try {
-				var saved = localStorage.getItem(KEY);
-				var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-				if (saved === DARK || (saved === null && prefersDark)) {
-					document.documentElement.classList.add(C);
-					document.documentElement.setAttribute('data-theme', 'dark');
-				} else {
-					document.documentElement.classList.remove(C);
-					document.documentElement.setAttribute('data-theme', 'light');
-				}
-				} catch (e) {}
-			})();
-			</script>
 		<meta name="theme-color" content="#0b0f17" media="(prefers-color-scheme: dark)">
 		<meta name="theme-color" content="#ffffff"  media="(prefers-color-scheme: light)">
 		<link rel="preload" href="assets/css/brickloop.css" as="style" />
 		<link rel="stylesheet" href="assets/css/brickloop.css" />
 	</head>
-	<body class="theme-dark accent-gold">
+	<body class="accent-gold">
 		<header class="site-header">
 			<div class="container header-row">
 				<a href="/" class="brand" aria-label="Brickloop Advisors home">
@@ -85,7 +67,6 @@
 		</header>
 		<main id="app" class="container">
 			<!-- HERO -->
-			<p style="margin-top:.5rem;"></p>
 			<section id="home" class="hero hero--img">
 				<div class="hero-inner">
 					<h1 class="hero-title">Advisory-Driven Property Solutions</h1>
@@ -281,7 +262,7 @@
 			</section>
 			<!-- SMART VALUE PICKS -->
 			<section id="value" class="section section--cards section--alt">
-				<h2>Smart Value Picks — Curated for You</h2>
+				<h2>Featured Listings</h2>
 				<p class="section-sub">
     Transparent reasons to consider these pockets: price advantage, yield potential, and connectivity.
   </p>
@@ -491,7 +472,7 @@
 							<summary>What is “micro-commercial” and who is it for?</summary>
 							<div class="faq-a">
         Compact commercial assets—retail bays, cloud-kitchen pods, co-work suites—suited for investors seeking yield with lower ticket sizes.
-      </div>
+      </div>	
 						</details>
 						<details>
 							<summary>Do you support NRI and first-time buyers?</summary>

@@ -31,15 +31,14 @@
 (function () {
   const map = new Map([
     ['home',     document.querySelector('[data-spy="home"]')],
-    ['buy',      document.querySelector('[data-spy="buy"]')],
-    ['invest',   document.querySelector('[data-spy="invest"]')],
-    ['why',      document.querySelector('[data-spy="why"]')],
+    ['value',    document.querySelector('[data-spy="value"]')],
+    ['builders', document.querySelector('[data-spy="builders"]')],
     ['services', document.querySelector('[data-spy="services"]')],
     ['contact',  document.querySelector('[data-spy="contact"]')],
   ]);
 
   // If you didn’t add data-spy on some links, that’s fine—this will just skip them.
-  const sections = ['home','buy','invest','why','services','contact']
+  const sections = ['home','value','builders','services','contact']
     .map(id => document.getElementById(id))
     .filter(Boolean);
 
@@ -312,4 +311,31 @@ document.addEventListener('DOMContentLoaded', () => {
       smoothTo(href);
     }
   }, { passive: false });
+})();
+
+// Featured slider controls (scroll-snap based)
+(function(){
+  const slider = document.querySelector('[data-slider="featured"]');
+  if (!slider) return;
+  const scroller = slider.querySelector('.slides');
+  const prev = slider.querySelector('.slider-prev');
+  const next = slider.querySelector('.slider-next');
+  if (!scroller || !prev || !next) return;
+
+  function slideBy(dir){
+    const card = scroller.querySelector('.slide');
+    if (!card) return;
+    const gap = parseInt(getComputedStyle(scroller).columnGap || getComputedStyle(scroller).gap || '32', 10) || 32;
+    const amount = card.getBoundingClientRect().width + gap;
+    scroller.scrollBy({ left: dir * amount, behavior: 'smooth' });
+  }
+
+  prev.addEventListener('click', () => slideBy(-1));
+  next.addEventListener('click', () => slideBy(1));
+
+  // Keyboard arrow support when slider is focused
+  slider.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); slideBy(1); }
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); slideBy(-1); }
+  });
 })();

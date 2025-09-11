@@ -10,88 +10,104 @@
 		<!-- Favicon / App Icon -->
 		<link rel="icon" href="assets/favicons/Logo.png" sizes="32x32" />
 		<link rel="apple-touch-icon" href="assets/favicons/Logo.png?v=2" />
-		<!-- Typography: Montserrat (headings) + Lato (body) -->
+		<!-- Typography: Raleway (headings) + Inter (body) -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 		<!-- Main CSS -->
-		 <script>
-			(function () {
-				var KEY = 'bl-theme';
-				var DARK = 'dark';
-				var C = 'theme-dark';
-				try {
-				var saved = localStorage.getItem(KEY);
-				var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-				if (saved === DARK || (saved === null && prefersDark)) {
-					document.documentElement.classList.add(C);
-					document.documentElement.setAttribute('data-theme', 'dark');
-				} else {
-					document.documentElement.classList.remove(C);
-					document.documentElement.setAttribute('data-theme', 'light');
-				}
-				} catch (e) {}
-			})();
-			</script>
 		<meta name="theme-color" content="#0b0f17" media="(prefers-color-scheme: dark)">
 		<meta name="theme-color" content="#ffffff"  media="(prefers-color-scheme: light)">
 		<link rel="preload" href="assets/css/brickloop.css" as="style" />
 		<link rel="stylesheet" href="assets/css/brickloop.css" />
 	</head>
-	<body class="theme-dark accent-gold">
+	<body class="accent-gold">
 		<header class="site-header">
 			<div class="container header-row">
 				<a href="/" class="brand" aria-label="Brickloop Advisors home">
 					<img
         src="assets/favicons/Logo.png?v=2"
         alt="Brickloop Advisors logo"
-        width="48" height="48"
+        width="64" height="64"
         class="brand-logo"
 		fetchpriority="high"
       />
-					<span class="brand-name">Brickloop Advisors - Unit of Hoysala Realtors</span>
+					<span class="brand-text">
+						<span class="brand-title">Brickloop Advisors</span>
+						<span class="brand-sub">— Unit of Hoysala Realtors</span>
+					</span>
 				</a>
 				<nav class="site-nav" aria-label="Primary">
 					<button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">Menu</button>
 					<ul id="nav-menu" class="nav-menu">
-						<li>
-							<a href="#home" data-spy="home">Home</a>
-						</li>
-						<li>
-							<a href="#buy" data-spy="buy">Buy</a>
-						</li>
-						<li>
-							<a href="#why" data-spy="why">Why Us?</a>
-						</li>
-						<li>
-							<a href="#builders" data-spy="builders">Partners</a>
-						</li>
-						<li>
-							<a href="#services" data-spy="services">Our Services</a>
-						</li>
-						<li>
-							<a href="#value" data-spy="value">Value Picks</a>
-						</li>
-						<li>
-							<a href="#contact" data-spy="contact">Contact</a>
-						</li>
-						<li>
-							<a href="#faq" data-spy="faq">FAQ</a>
-						</li>
+						<li><a href="#home" data-spy="home">Home</a></li>
+						<li><a href="#value" data-spy="value">Listings</a></li>
+						<li><a href="#builders" data-spy="builders">Partners</a></li>
+						<li><a href="#services" data-spy="services">Services</a></li>
+						<li><a href="#contact" data-spy="contact">Contact</a></li>
 					</ul>
 				</nav>
 			</div>
 		</header>
 		<main id="app" class="container">
 			<!-- HERO -->
-			<p style="margin-top:.5rem;"></p>
 			<section id="home" class="hero hero--img">
 				<div class="hero-inner">
 					<h1 class="hero-title">Advisory-Driven Property Solutions</h1>
 					<p class="hero-sub">Bengaluru • Curated Homes • Micro-Commercial Focus</p>
 					<a href="#contact" class="btn btn-primary">Talk to an Advisor</a>
 					<link rel="preload" as="image" href="assets/img/hero-image.jpg" />
+				</div>
+			</section>
+			<!-- FEATURED LISTINGS — slider style -->
+			<section id="value" class="section featured-listings">
+				<p class="section-eyebrow">Representing a curated collection of Bengaluru’s finest properties</p>
+				<div class="featured-slider" data-slider="featured">
+					<div class="slides" role="region" aria-label="Featured Listings">
+						<article class="slide" aria-roledescription="slide">
+							<img src="assets/projects/nambiar-d25/nambiar_d25.jpg" alt="Nambiar District 25 — The Soho Life" loading="lazy" decoding="async" />
+							<span class="slide-tag">For Sale</span>
+							<div class="slide-info">
+								<h3 class="slide-title"><a class="slide-link" href="projects/nambiar-d25.html">Nambiar District 25</a></h3>
+								<p class="slide-meta">Off Sarjapur Road • Integrated Township</p>
+								<p class="slide-price"><a class="slide-price-link" href="#enquiry" aria-label="Open enquiry form">Price Upon Request</a></p>
+							</div>
+						</article>
+						<article class="slide" aria-roledescription="slide">
+							<img src="assets/projects/birla-evara/birla%20evara.png" alt="Birla Evara — Bengaluru" loading="lazy" decoding="async" />
+							<span class="slide-tag">For Sale</span>
+							<div class="slide-info">
+								<h3 class="slide-title"><a class="slide-link" href="projects/birla-evara.html">Birla Evara</a></h3>
+								<p class="slide-meta">Off Sarjapur Road • Ultra‑Luxury</p>
+								<p class="slide-price"><a class="slide-price-link" href="#enquiry" aria-label="Open enquiry form">Price Upon Request</a></p>
+							</div>
+						</article>
+						<article class="slide" aria-roledescription="slide">
+							<img src="assets/projects/godrej-lakeside-orchard/Godrej%20Lakeside%20orchard.png" alt="Godrej Lakeside Orchard — Bengaluru" loading="lazy" decoding="async" />
+							<span class="slide-tag">For Sale</span>
+							<div class="slide-info">
+								<h3 class="slide-title"><a class="slide-link" href="projects/godrej-lakeside-orchard.html">Godrej Lakeside Orchard</a></h3>
+								<p class="slide-meta">Off Sarjapur Road • High‑rise</p>
+								<p class="slide-price"><a class="slide-price-link" href="#enquiry" aria-label="Open enquiry form">Price Upon Request</a></p>
+							</div>
+						</article>
+						<article class="slide" aria-roledescription="slide">
+							<img src="assets/projects/sowparnika-rhythm-of-rain/rhythm-of-rain.jpg" alt="Sowparnika Rhythm of Rain — Whitefield" loading="lazy" decoding="async" />
+							<span class="slide-tag">For Sale</span>
+							<div class="slide-info">
+								<h3 class="slide-title"><a class="slide-link" href="projects/sowparnika-rhythm-of-rain.html">Sowparnika Rhythm of Rain</a></h3>
+								<p class="slide-meta">Whitefield • Off Soukya Road</p>
+								<p class="slide-price"><a class="slide-price-link" href="#enquiry" aria-label="Open enquiry form">Price Upon Request</a></p>
+							</div>
+						</article>
+					</div>
+					<div class="slider-controls">
+						<div class="slider-nav">
+							<button class="slider-prev" aria-label="Previous listing">‹</button>
+							<button class="slider-next" aria-label="Next listing">›</button>
+						</div>
+						<a class="btn btn-outline view-all" href="projects/index.html">View All Properties</a>
+					</div>
 				</div>
 			</section>
 			<!-- FIND YOUR HOME -->
@@ -115,19 +131,19 @@
 			</section>
 			<!-- INVEST SMARTER -->
 			<section id="invest" class="section section--alt two-col">
-				<div>
-					<h2>Invest Smarter</h2>
-					<p>High-impact micro-commercial options: compact retail, cloud kitchens, co-work, and more—without large lease headaches.</p>
-					<ul class="feature-list">
-						<li>Builder-neutral evaluation and due diligence</li>
-						<li>Yield insights & conservative projections</li>
-						<li>Tenant sourcing via verified network</li>
-						<li>Interior & fit-out coordination (optional)</li>
-					</ul>
-					<p>
-						<a class="btn btn-primary" href="#contact">Get Investment Options</a>
-					</p>
-				</div>
+                <div>
+                    <h2>Invest Smarter</h2>
+                    <p>Pre‑possession leverage arbitrage in simple terms: low entry, strong incentives, full‑value appreciation, exit near possession.</p>
+                    <ul class="feature-list">
+                        <li>Book with as low as 5%.</li>
+                        <li>Cashback/discounts or no‑EMI till possession.</li>
+                        <li>Asset appreciates on full ticket size.</li>
+                        <li>Flip close to possession for gains.</li>
+                    </ul>
+                    <p>
+                        <a class="btn btn-primary" href="#contact">Get Investment Options</a>
+                    </p>
+                </div>
 				<figure class="media-card">
 					<img src="assets/img/integrated-township.png" alt="Modern integrated township in Bengaluru" />
 				</figure>
@@ -235,10 +251,22 @@
 					</li>
 					<li>
 						<a class="logo-card" target="_blank" rel="noopener">
-							<img src="assets/favicons/Signature Dwellings.jpeg" alt="DS Max logo" />
-							<span>Signature Dwellings</span>
+							<img src="assets/favicons/Sowparnika.png" alt="Sowparnika logo" />
+							<span>Sowparnika</span>
 						</a>
 					</li>
+						<li>
+							<a class="logo-card" target="_blank" rel="noopener">
+								<img src="assets/favicons/Signature Dwellings.jpeg" alt="Signature Dwellings logo" />
+								<span>Signature Dwellings</span>
+							</a>
+						</li>
+						<li>
+							<a class="logo-card" target="_blank" rel="noopener">
+								<img src="assets/favicons/Amberstone-Properties.jpeg" alt="Amberstone Properties logo" />
+								<span>Amberstone Properties</span>
+							</a>
+						</li>
 				</ul>
 			</section>
 			<!-- SERVICES -->
@@ -279,102 +307,7 @@
 					</li>
 				</ul>
 			</section>
-			<!-- SMART VALUE PICKS -->
-			<section id="value" class="section section--cards section--alt">
-				<h2>Smart Value Picks — Curated for You</h2>
-				<p class="section-sub">
-    Transparent reasons to consider these pockets: price advantage, yield potential, and connectivity.
-  </p>
-				<ul class="card-grid value-grid">
-					<!-- Pick 1 -->
-					<li class="card value-card">
-						<div class="value-tags">
-							<span class="badge">Metro Proximity</span>
-							<span class="badge badge-alt">Price Advantage</span>
-						</div>
-						<h3>Sarjapur–Sompura Belt</h3>
-						<p class="value-why">Upcoming metro + strong social infra; good entry prices vs. ORR/Whitefield.</p>
-						<ul class="kv">
-							<li>
-								<span>Ticket size</span>
-								<strong>₹1.1–1.8 Cr</strong>
-							</li>
-							<li>
-								<span>Buyer profile</span>
-								<strong>End-use / NRI</strong>
-							</li>
-							<li>
-								<span>Signals of value</span>
-								<strong>Metro, schools, growing retail</strong>
-							</li>
-						</ul>
-						<div class="media-card">
-							<img src="assets/img/sarjapur-corridor.png" alt="Aerial view of Sarjapur with residential developments" loading="lazy" decoding="async" />
-						</div>
-						<div class="value-cta">
-							<a href="#contact" class="btn btn-primary" aria-label="Get details for Sarjapur–Sompura value picks">Get Details</a>
-						</div>
-					</li>
-					<!-- Pick 2 -->
-					<li class="card value-card">
-						<div class="value-tags">
-							<span class="badge">High Yield</span>
-							<span class="badge badge-alt">IT Corridors</span>
-						</div>
-						<h3>North Bengaluru Growth Corridor</h3>
-						<p class="value-why">Airport influence + Grade-A offices; resilient rental demand.</p>
-						<ul class="kv">
-							<li>
-								<span>Ticket size</span>
-								<strong>₹90L–₹1.6 Cr</strong>
-							</li>
-							<li>
-								<span>Buyer profile</span>
-								<strong>Investor / First-home</strong>
-							</li>
-							<li>
-								<span>Signals of value</span>
-								<strong>Yield, infra pipeline</strong>
-							</li>
-						</ul>
-						<div class="media-card">
-							<img src="assets/img/north-bengaluru.jpg" alt="Modern residential apartment complex in North Bengaluru" loading="lazy" decoding="async" />
-						</div>
-						<div class="value-cta">
-							<a href="#contact" class="btn btn-primary" aria-label="Get details for North Bengaluru value picks">Get Details</a>
-						</div>
-					</li>
-					<!-- Pick 3 -->
-					<li class="card value-card">
-						<div class="value-tags">
-							<span class="badge">Premium Liveability</span>
-							<span class="badge badge-alt">Balanced Yield</span>
-						</div>
-						<h3>JP Nagar / Bannerghatta Prime-Luxe</h3>
-						<p class="value-why">Mature neighbourhoods with quality schools, hospitals and retail.</p>
-						<ul class="kv">
-							<li>
-								<span>Ticket size</span>
-								<strong>₹1.6–₹3.2 Cr</strong>
-							</li>
-							<li>
-								<span>Buyer profile</span>
-								<strong>Upgrade / NRI</strong>
-							</li>
-							<li>
-								<span>Signals of value</span>
-								<strong>Social infra, brand inventory</strong>
-							</li>
-						</ul>
-						<div class="media-card">
-							<img src="assets/img/ecity-south-bengaluru.png" alt="Premium residential pocket near metro" loading="lazy" decoding="async" />
-						</div>
-						<div class="value-cta">
-							<a href="#contact" class="btn btn-primary" aria-label="Get details for E-City/ JP Nagar / Bannerghatta value picks">Get Details</a>
-						</div>
-					</li>
-				</ul>
-			</section>
+			<!-- SMART VALUE PICKS moved above after Hero -->
 			<!-- QUICK ENQUIRY -->
 			<section id="enquiry" class="section section--alt enquiry">
 				<div class="enquiry-wrap">
@@ -491,7 +424,7 @@
 							<summary>What is “micro-commercial” and who is it for?</summary>
 							<div class="faq-a">
         Compact commercial assets—retail bays, cloud-kitchen pods, co-work suites—suited for investors seeking yield with lower ticket sizes.
-      </div>
+      </div>	
 						</details>
 						<details>
 							<summary>Do you support NRI and first-time buyers?</summary>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Featured Properties | Brickloop Advisors</title>
+    <link rel="icon" href="../assets/favicons/Logo.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="../assets/favicons/Logo.png?v=2" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/brickloop.css" />
+    <style>
+      body.listings{ --font-head: "Montserrat", ui-sans-serif, system-ui; --font-body: "Lexend", ui-sans-serif, system-ui; }
+      .eyebrow{ text-align:center; text-transform:uppercase; letter-spacing:.28em; opacity:.85; margin:.25rem 0 .75rem; font-family: var(--font-head); }
+      .page-title{ text-align:center; font-family:var(--font-head); font-weight:800; letter-spacing:.06em; text-transform:uppercase; margin:0 0 1rem; }
+      .listing-grid{ --gap: 1rem; display:grid; gap:var(--gap); grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+      .listing-card{ position:relative; border:1px solid var(--line); border-radius:18px; overflow:hidden; background: var(--card); display:flex; flex-direction:column; }
+      .listing-card img{ width:100%; height:240px; object-fit:cover; display:block; flex:0 0 auto; }
+      .listing-card .info{ padding:.75rem .9rem; display:flex; flex-direction:column; flex:1 1 auto; }
+      .listing-card .title{ margin:0 0 .25rem; font-weight:800; letter-spacing:.02em; }
+      .listing-card .title a{ color:inherit; text-decoration:none; }
+      .listing-card .meta{ margin:0; opacity:.8; }
+      .listing-card .actions{ display:flex; gap:.5rem; margin:.6rem 0 .25rem; flex-wrap:wrap; margin-top:auto; }
+      .listing-card .btn{ flex:0 0 auto; }
+    </style>
+  </head>
+  <body class="accent-gold listings">
+    <header class="site-header">
+      <div class="container header-row">
+        <a href="/" class="brand" aria-label="Brickloop Advisors home">
+          <img src="../assets/favicons/Logo.png?v=2" alt="Brickloop Advisors logo" width="44" height="44" class="brand-logo" />
+          <span class="brand-text">
+            <span class="brand-title">Brickloop Advisors</span>
+            <span class="brand-sub">— Unit of Hoysala Realtors</span>
+          </span>
+        </a>
+        <nav class="site-nav" aria-label="Primary">
+          <ul class="nav-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/\#value">Listings</a></li>
+            <li><a href="/\#builders">Partners</a></li>
+            <li><a href="/\#services">Services</a></li>
+            <li><a href="/\#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <p class="eyebrow">Curated Collection</p>
+      <h1 class="page-title">Featured Properties</h1>
+
+      <section class="listing-grid">
+        <!-- Sowparnika Rhythm of Rain (NEW) -->
+        <article class="listing-card">
+          <img src="../assets/projects/sowparnika-rhythm-of-rain/rhythm-of-rain.jpg" alt="Sowparnika Rhythm of Rain — Whitefield" />
+          <div class="info">
+            <h3 class="title"><a href="sowparnika-rhythm-of-rain.html">Sowparnika Rhythm of Rain</a></h3>
+            <p class="meta">Whitefield • Off Soukya Road • High‑rise</p>
+            <div class="actions">
+              <a class="btn btn-primary" href="sowparnika-rhythm-of-rain.html">View Details</a>
+              <a class="btn btn-outline" href="../index.html#enquiry">Price Upon Request</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- D25 -->
+        <article class="listing-card">
+          <img src="../assets/projects/nambiar-d25/nambiar_d25.jpg" alt="Nambiar District 25 — The Soho Life" />
+          <div class="info">
+            <h3 class="title"><a href="nambiar-d25.html">Nambiar District 25</a></h3>
+            <p class="meta">Off Sarjapur Road • Integrated Township</p>
+            <div class="actions">
+              <a class="btn btn-primary" href="nambiar-d25.html">View Details</a>
+              <a class="btn btn-outline" href="../index.html#enquiry">Price Upon Request</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Birla Evara -->
+        <article class="listing-card">
+          <img src="../assets/projects/birla-evara/birla%20evara.png" alt="Birla Evara — Bengaluru" />
+          <div class="info">
+            <h3 class="title"><a href="birla-evara.html">Birla Evara</a></h3>
+            <p class="meta">Off Sarjapur Road • Ultra‑Luxury</p>
+            <div class="actions">
+              <a class="btn btn-primary" href="birla-evara.html">View Details</a>
+              <a class="btn btn-outline" href="../index.html#enquiry">Price Upon Request</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Godrej Lakeside Orchard -->
+        <article class="listing-card">
+          <img src="../assets/img/integrated-township.png" alt="Godrej Lakeside Orchard — Bengaluru" />
+          <div class="info">
+            <h3 class="title"><a href="godrej-lakeside-orchard.html">Godrej Lakeside Orchard</a></h3>
+            <p class="meta">Off Sarjapur Road • High‑rise</p>
+            <div class="actions">
+              <a class="btn btn-primary" href="godrej-lakeside-orchard.html">View Details</a>
+              <a class="btn btn-outline" href="../index.html#enquiry">Price Upon Request</a>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <small>© <span id="year"></span> Brickloop Advisors · Bengaluru, India</small>
+      </div>
+    </footer>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  </body>
+  </html>

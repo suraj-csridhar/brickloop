@@ -15,13 +15,13 @@
       .eyebrow{ text-align:center; text-transform:uppercase; letter-spacing:.28em; opacity:.85; margin:.25rem 0 .75rem; font-family: var(--font-head); }
       .page-title{ text-align:center; font-family:var(--font-head); font-weight:800; letter-spacing:.06em; text-transform:uppercase; margin:0 0 1rem; }
       .listing-grid{ --gap: 1rem; display:grid; gap:var(--gap); grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
-      .listing-card{ position:relative; border:1px solid var(--line); border-radius:18px; overflow:hidden; background: var(--card); }
-      .listing-card img{ width:100%; height:240px; object-fit:cover; display:block; }
-      .listing-card .info{ padding:.75rem .9rem; }
+      .listing-card{ position:relative; border:1px solid var(--line); border-radius:18px; overflow:hidden; background: var(--card); display:flex; flex-direction:column; }
+      .listing-card img{ width:100%; height:240px; object-fit:cover; display:block; flex:0 0 auto; }
+      .listing-card .info{ padding:.75rem .9rem; display:flex; flex-direction:column; flex:1 1 auto; }
       .listing-card .title{ margin:0 0 .25rem; font-weight:800; letter-spacing:.02em; }
       .listing-card .title a{ color:inherit; text-decoration:none; }
       .listing-card .meta{ margin:0; opacity:.8; }
-      .listing-card .actions{ display:flex; gap:.5rem; margin:.6rem 0 .25rem; flex-wrap:wrap; }
+      .listing-card .actions{ display:flex; gap:.5rem; margin:.6rem 0 .25rem; flex-wrap:wrap; margin-top:auto; }
       .listing-card .btn{ flex:0 0 auto; }
     </style>
   </head>
@@ -52,6 +52,19 @@
       <h1 class="page-title">Featured Properties</h1>
 
       <section class="listing-grid">
+        <!-- Sowparnika Rhythm of Rain (NEW) -->
+        <article class="listing-card">
+          <img src="../assets/projects/sowparnika-rhythm-of-rain/rhythm-of-rain.jpg" alt="Sowparnika Rhythm of Rain — Whitefield" />
+          <div class="info">
+            <h3 class="title"><a href="sowparnika-rhythm-of-rain.html">Sowparnika Rhythm of Rain</a></h3>
+            <p class="meta">Whitefield • Off Soukya Road • High‑rise</p>
+            <div class="actions">
+              <a class="btn btn-primary" href="sowparnika-rhythm-of-rain.html">View Details</a>
+              <a class="btn btn-outline" href="../index.html#enquiry">Price Upon Request</a>
+            </div>
+          </div>
+        </article>
+
         <!-- D25 -->
         <article class="listing-card">
           <img src="../assets/projects/nambiar-d25/nambiar_d25.jpg" alt="Nambiar District 25 — The Soho Life" />

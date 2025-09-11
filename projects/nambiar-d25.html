@@ -38,7 +38,8 @@
       .kv span{ opacity:.8; }
       .bullets{ margin:.25rem 0 0; padding-left:1.1rem; }
       .media-block{ background: var(--card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
-      .media-block video{ width:100%; height:auto; display:block; }
+      .media-block iframe{ width:100%; height: 315px; display:block; border:0; }
+      @media (min-width: 900px){ .media-block iframe{ height: 360px; } }
       .doc-row{ display:flex; gap:.65rem; flex-wrap:wrap; }
       /* Sticky mobile CTA */
       .sticky-cta{ position: fixed; left:0; right:0; bottom:0; padding:10px 12px; display:none; gap:8px; background: rgba(255,255,255,.9); backdrop-filter: blur(6px); border-top: 1px solid var(--line); z-index: 3000; }
@@ -135,10 +136,7 @@
 
           <aside class="side">
             <div class="media-block">
-              <video controls preload="metadata" poster="../assets/projects/nambiar-d25/nambiar_d25.jpg">
-                <source src="../assets/projects/nambiar-d25/model_apartment.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+              <iframe src="https://www.youtube.com/embed/jh9K_vA1gmQ" title="Nambiar District 25 — Model Apartment" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
             </div>
             <div class="info-card" style="margin-top:12px;">
               <h3>Downloads</h3>

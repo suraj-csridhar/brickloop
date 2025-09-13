@@ -330,6 +330,12 @@ a{ color: inherit; text-decoration-thickness: .08em; }
   }
 }
 
+/* Align section images vertically with their text */
+@media (min-width: 900px){
+  #invest .media-card,
+  #buy .media-card{ align-self: center; }
+}
+
 /* ==== Feature list ==== */
 .feature-list{
   margin: .5rem 0 1rem;

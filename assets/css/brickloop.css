@@ -579,12 +579,15 @@ a{ color: inherit; text-decoration-thickness: .08em; }
 
 .logo-card img{
   width: 100%;                /* responsive within the card */
-  max-width: 220px;           /* cap on desktop */
+  max-width: 260px;           /* slightly larger for better presence */
   aspect-ratio: 16 / 9;       /* uniform logo box ratio */
   height: auto;               /* computed from aspect-ratio */
   object-fit: contain;        /* preserve original logo proportions */
   filter: none;               /* keep brand colors for clarity */
-  image-rendering: -webkit-optimize-contrast;
+  /* Sharpening hints across browsers */
+  image-rendering: -webkit-optimize-contrast; /* Safari/WebKit */
+  image-rendering: crisp-edges;               /* Chromium/Spec hint */
+  image-rendering: -moz-crisp-edges;          /* Firefox */
   transition: transform .2s ease;
 }
 .logo-card:hover img{ transform: translateY(-1px); }

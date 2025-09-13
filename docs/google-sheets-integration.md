@@ -3,12 +3,12 @@ Google Sheets integration (Quick Enquiry)
 Overview
 - Target sheet: https://docs.google.com/spreadsheets/d/1TOpZLa9A2y5-c3Gwlt9J-g3YcAmn6Yv1ZW5BNwL-fNg/edit?gid=0
 - Schema: Timestamp | Name | Phone | Preferred Area | Budget Range | Looking For
-- Frontend: `index.html` (single Submit button) + `assets/js/brickloop.js` posts to an Apps Script Web App URL.
+- Frontend: `index.html` (single Submit button) + `script.js` posts to an Apps Script Web App URL.
 
 How it works
 1) Deploy a Google Apps Script Web App that accepts POST and writes to the sheet.
 2) Copy the deployed Web App URL (ends with `/exec`).
-3) Set that URL in `assets/js/brickloop.js` as `ENDPOINT_URL`.
+3) Set that URL in `script.js` as `ENDPOINT_URL`.
 4) The form posts fields: `name`, `phone`, `area`, `budget`, `need` and `key`.
 
 Apps Script
@@ -56,7 +56,7 @@ function json(obj){
 ```
 
 Frontend configuration
-- Edit `assets/js/brickloop.js` and set:
+- Edit `script.js` and set:
   - `ENDPOINT_URL` to your deployed Web App `/exec` URL
   - `SECRET_KEY` to the same value used in the Apps Script
 
